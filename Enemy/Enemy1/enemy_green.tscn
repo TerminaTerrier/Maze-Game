@@ -1,0 +1,129 @@
+[gd_scene load_steps=17 format=3 uid="uid://nwghbxg72c7x"]
+
+[ext_resource type="Script" path="res://Enemy/Enemy1/enemy_green.cs" id="1_gif0h"]
+[ext_resource type="Texture2D" uid="uid://dyinihdu2sfl3" path="res://assets/12 - Pokey Bub/Running (16 x 16).png" id="2_3dlx3"]
+[ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Enemy/State Machine & States/state_machine.tscn" id="3_tts3t"]
+[ext_resource type="Script" path="res://Enemy/State Machine & States/IdleState.cs" id="4_g36pb"]
+[ext_resource type="Script" path="res://Enemy/Enemy1/ChaseState.cs" id="5_kqd6o"]
+[ext_resource type="Script" path="res://Enemy/Enemy1/ScatterState.cs" id="6_erddf"]
+[ext_resource type="Script" path="res://Enemy/Enemy1/FrightenedState.cs" id="7_qc06g"]
+[ext_resource type="Script" path="res://Enemy/Enemy1/RetreatState.cs" id="8_0d2m0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64d6l"]
+atlas = ExtResource("2_3dlx3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7btte"]
+atlas = ExtResource("2_3dlx3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npw7o"]
+atlas = ExtResource("2_3dlx3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daapw"]
+atlas = ExtResource("2_3dlx3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rhq6"]
+atlas = ExtResource("2_3dlx3")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1e7w"]
+atlas = ExtResource("2_3dlx3")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7dy6j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64d6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7btte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npw7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daapw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rhq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1e7w")
+}],
+"loop": true,
+"name": &"MoveCycle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ue6ye"]
+radius = 7.0
+
+[node name="Enemy_Green" type="CharacterBody2D"]
+z_index = 1
+position = Vector2(495, 218)
+script = ExtResource("1_gif0h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.98023e-06, 0.999999)
+scale = Vector2(1.25, 1.1875)
+sprite_frames = SubResource("SpriteFrames_7dy6j")
+animation = &"MoveCycle"
+frame = 2
+frame_progress = 0.985297
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_ue6ye")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 20.1
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="StateMachine" parent="." instance=ExtResource("3_tts3t")]
+initialState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timer", "enemy")]
+script = ExtResource("4_g36pb")
+timer = NodePath("Timer")
+enemy = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+wait_time = 6.823
+one_shot = true
+
+[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "chaseTimer")]
+script = ExtResource("5_kqd6o")
+enemy = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+chaseTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/Chase"]
+
+[node name="Scatter" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "scatterTimer")]
+script = ExtResource("6_erddf")
+enemy = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+scatterTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/Scatter"]
+
+[node name="Frightened" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "frightenedTimer")]
+script = ExtResource("7_qc06g")
+enemy = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+frightenedTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/Frightened"]
+
+[node name="Retreat" type="Node" parent="StateMachine"]
+script = ExtResource("8_0d2m0")
+
+[connection signal="timeout" from="StateMachine/Idle/Timer" to="StateMachine/Idle" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Chase/Timer" to="StateMachine/Chase" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Scatter/Timer" to="StateMachine/Scatter" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Frightened/Timer" to="StateMachine/Frightened" method="_on_timer_timeout"]

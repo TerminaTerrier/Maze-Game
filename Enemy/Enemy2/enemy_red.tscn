@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvybshk5bhrsc"]
+
+[ext_resource type="Texture2D" uid="uid://8pgnbknxgqw5" path="res://assets/11 - Spikey Bub/Idle (16 x 16).png" id="1_xi6yi"]
+[ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Enemy/State Machine & States/state_machine.tscn" id="2_5kxce"]
+[ext_resource type="Script" path="res://Enemy/State Machine & States/IdleState.cs" id="3_dtxxt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xfyy"]
+atlas = ExtResource("1_xi6yi")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owt8g"]
+atlas = ExtResource("1_xi6yi")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_071t3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xfyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owt8g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqsmf"]
+radius = 5.0
+
+[node name="enemy_red" type="CharacterBody2D"]
+z_index = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_071t3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_fqsmf")
+
+[node name="StateMachine" parent="." instance=ExtResource("2_5kxce")]
+initialState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timer", "enemy")]
+script = ExtResource("3_dtxxt")
+timer = NodePath("Timer")
+enemy = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]

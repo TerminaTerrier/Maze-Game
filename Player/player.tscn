@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://cufgy64ohch65"]
+
+[ext_resource type="Script" path="res://Player/player.cs" id="1_sf13e"]
+[ext_resource type="Script" path="res://Player/health.cs" id="2_cf7n7"]
+[ext_resource type="Texture2D" uid="uid://bjt3tv0n721fh" path="res://assets/6 - Rolling Nero/Rolling (16 x 16).png" id="2_iiwik"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ugxnw"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpylb"]
+atlas = ExtResource("2_iiwik")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf7ff"]
+atlas = ExtResource("2_iiwik")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78hfp"]
+atlas = ExtResource("2_iiwik")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i7ta"]
+atlas = ExtResource("2_iiwik")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr72h"]
+atlas = ExtResource("2_iiwik")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcrhh"]
+atlas = ExtResource("2_iiwik")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rbr8v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpylb")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpylb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf7ff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78hfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i7ta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr72h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcrhh")
+}],
+"loop": true,
+"name": &"MoveCycle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t8phy"]
+radius = 8.06226
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+position = Vector2(433, 164)
+motion_mode = 1
+script = ExtResource("1_sf13e")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("2_cf7n7")
+
+[node name="Timer" type="Timer" parent="HealthComponent"]
+
+[node name="Area2D" type="Area2D" parent="HealthComponent"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent/Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_ugxnw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(1.0625, 1.0625)
+sprite_frames = SubResource("SpriteFrames_rbr8v")
+animation = &"MoveCycle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.95, 0.95)
+shape = SubResource("CircleShape2D_t8phy")
+
+[node name="RayCast2D_1" type="RayCast2D" parent="."]
+position = Vector2(-5, 4)
+target_position = Vector2(0, 15)
+
+[node name="RayCast2D_2" type="RayCast2D" parent="."]
+position = Vector2(5, 4)
+target_position = Vector2(0, 15)
+
+[connection signal="timeout" from="HealthComponent/Timer" to="HealthComponent" method="_on_timer_timeout"]
+[connection signal="body_entered" from="HealthComponent/Area2D" to="HealthComponent" method="_on_area_2d_body_entered"]
