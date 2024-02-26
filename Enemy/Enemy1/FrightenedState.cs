@@ -53,10 +53,21 @@ public partial class FrightenedState : Node, IState
         velocity = dir * enemySpeed;
         enemy.Velocity = velocity;
 
+       
+
         enemy.MoveAndSlide();
 
-       // GD.Print(navAgent.IsTargetReachable());
-       // GD.Print(dir);
+        // GD.Print(navAgent.IsTargetReachable());
+        // GD.Print(dir);
+    }
+
+    public void _on_area_2d_body_entered(Node2D body)
+    {
+        if (body.Name == "Player")
+        {
+            fsm.TransitionTo("Retreat");
+        }
+       
     }
 
     public void _on_timer_timeout()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://nwghbxg72c7x"]
+[gd_scene load_steps=18 format=3 uid="uid://nwghbxg72c7x"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy1/enemy_green.cs" id="1_gif0h"]
 [ext_resource type="Texture2D" uid="uid://dyinihdu2sfl3" path="res://assets/12 - Pokey Bub/Running (16 x 16).png" id="2_3dlx3"]
@@ -62,9 +62,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ue6ye"]
 radius = 7.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1o7j5"]
+radius = 8.06226
+
 [node name="Enemy_Green" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(495, 218)
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_gif0h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -80,9 +85,16 @@ position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_ue6ye")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 20.1
+path_desired_distance = 17.0
 path_postprocessing = 1
 debug_enabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_1o7j5")
+debug_color = Color(0.827451, 0.807843, 0.780392, 0.203922)
 
 [node name="StateMachine" parent="." instance=ExtResource("3_tts3t")]
 initialState = NodePath("Idle")
@@ -120,10 +132,17 @@ frightenedTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachine/Frightened"]
 
-[node name="Retreat" type="Node" parent="StateMachine"]
+[node name="Retreat" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "retreatTimer")]
 script = ExtResource("8_0d2m0")
+enemy = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+retreatTimer = NodePath("Timer")
 
+[node name="Timer" type="Timer" parent="StateMachine/Retreat"]
+
+[connection signal="body_entered" from="Area2D" to="StateMachine/Frightened" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="StateMachine/Idle/Timer" to="StateMachine/Idle" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Chase/Timer" to="StateMachine/Chase" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Scatter/Timer" to="StateMachine/Scatter" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Frightened/Timer" to="StateMachine/Frightened" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Retreat/Timer" to="StateMachine/Retreat" method="_on_timer_timeout"]
