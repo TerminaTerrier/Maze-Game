@@ -25,7 +25,10 @@ public partial class RetreatState : Node, IState
     {
         timerNum = 1f;
         retreatTimer.Start(timerNum);
+       
     }
+
+    
 
     private void GetTargetPath()
     {
@@ -44,7 +47,10 @@ public partial class RetreatState : Node, IState
 
     public void Update(float delta)
     {
-        GetTargetPath();
+        if(navAgent.IsTargetReached() == false)
+        {
+            GetTargetPath();
+        }
     }
 
     public void PhysicsUpdate(float delta)
@@ -70,6 +76,7 @@ public partial class RetreatState : Node, IState
         {
             fsm.TransitionTo("Idle");
         }
+        timerNum = 1f;
     }
 
     public void Exit()
