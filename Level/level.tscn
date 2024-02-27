@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cuomd3fonk4k4"]
+[gd_scene load_steps=14 format=3 uid="uid://cuomd3fonk4k4"]
 
 [ext_resource type="Script" path="res://Level/levelmanager.cs" id="1_a8oe5"]
 [ext_resource type="Texture2D" uid="uid://ddqu5ivlhu2ri" path="res://assets/Tiles_pack/Tileset_6.png" id="2_dqi8a"]
@@ -200,6 +200,13 @@ texture = ExtResource("2_dqi8a")
 10:0/0/physics_layer_0/angular_velocity = 0.0
 10:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_gl3wk")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_pwo4q"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tobnr"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
@@ -245,6 +252,7 @@ texture = ExtResource("3_781yy")
 2:1/0 = 0
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_pwo4q")
 3:1/0 = 0
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0

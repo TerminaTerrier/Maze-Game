@@ -60,6 +60,8 @@ public partial class RetreatState : Node, IState
         GD.Print(dir);
         GD.Print(navAgent.IsTargetReachable());
         GD.Print(navAgent.IsTargetReached());
+        GD.Print(navAgent.TargetPosition);
+        GD.Print(navAgent.GetFinalPosition());
     }
 
     public void _on_timer_timeout()

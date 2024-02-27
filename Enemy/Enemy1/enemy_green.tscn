@@ -63,7 +63,7 @@ animations = [{
 radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1o7j5"]
-radius = 8.06226
+radius = 9.0
 
 [node name="Enemy_Green" type="CharacterBody2D"]
 z_index = 1
@@ -85,8 +85,10 @@ position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_ue6ye")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 17.0
+path_desired_distance = 1.0
+target_desired_distance = 5.0
 path_postprocessing = 1
+avoidance_enabled = true
 debug_enabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
