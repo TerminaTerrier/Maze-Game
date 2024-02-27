@@ -18,10 +18,15 @@ public partial class FrightenedState : Node, IState
     Timer frightenedTimer;
     RandomNumberGenerator rng = new RandomNumberGenerator();
     float timerNum;
+    
+    string stateKey;
+    signalbus SignalBus;
 
     public void Start()
     {
         enemyName = enemy.Name;
+        SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+        SignalBus.StateChange += _on_state_change;
     }
 
     public void Enter()
@@ -63,7 +68,7 @@ public partial class FrightenedState : Node, IState
 
     public void _on_area_2d_body_entered(Node2D body)
     {
-        if (body.Name == "Player")
+        if (body.Name == "Player" && stateKey == "Frightened")
         {
             fsm.TransitionTo("Retreat");
         }
@@ -73,6 +78,11 @@ public partial class FrightenedState : Node, IState
     public void _on_timer_timeout()
     {
         fsm.TransitionTo("Chase");
+    }
+
+    public void _on_state_change(string key)
+    {
+        stateKey = key;
     }
 
     public void Exit()

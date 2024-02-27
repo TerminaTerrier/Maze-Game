@@ -63,7 +63,6 @@ animations = [{
 radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1o7j5"]
-radius = 9.0
 
 [node name="Enemy_Green" type="CharacterBody2D"]
 z_index = 1
@@ -90,13 +89,6 @@ target_desired_distance = 5.0
 path_postprocessing = 1
 avoidance_enabled = true
 debug_enabled = true
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_1o7j5")
-debug_color = Color(0.827451, 0.807843, 0.780392, 0.203922)
 
 [node name="StateMachine" parent="." instance=ExtResource("3_tts3t")]
 initialState = NodePath("Idle")
@@ -142,9 +134,16 @@ retreatTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachine/Retreat"]
 
-[connection signal="body_entered" from="Area2D" to="StateMachine/Frightened" method="_on_area_2d_body_entered"]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_1o7j5")
+debug_color = Color(0.827451, 0.807843, 0.780392, 0.203922)
+
 [connection signal="timeout" from="StateMachine/Idle/Timer" to="StateMachine/Idle" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Chase/Timer" to="StateMachine/Chase" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Scatter/Timer" to="StateMachine/Scatter" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Frightened/Timer" to="StateMachine/Frightened" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Retreat/Timer" to="StateMachine/Retreat" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="StateMachine/Frightened" method="_on_area_2d_body_entered"]
