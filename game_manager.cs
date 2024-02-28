@@ -24,7 +24,9 @@ public partial class game_manager : Node2D
 
 	public void OnLifeLost()
 	{
-	   
+	   timerNum = 1f;
+	   pauseTimer.Start(timerNum);
+	   GetTree().Paused = true;
 	}
 
 	public void OnLivesDepleted()
