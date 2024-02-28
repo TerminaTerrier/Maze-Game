@@ -60,14 +60,16 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ue6ye"]
-radius = 6.08276
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1o7j5"]
-radius = 8.0
+radius = 9.0
 
 [node name="Enemy_Green" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(495, 218)
+collision_layer = 4
+collision_mask = 7
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_gif0h")
@@ -87,6 +89,7 @@ shape = SubResource("CircleShape2D_ue6ye")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 1.0
 target_desired_distance = 5.0
+path_max_distance = 300.0
 path_postprocessing = 1
 avoidance_enabled = true
 debug_enabled = true
@@ -127,15 +130,18 @@ frightenedTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachine/Frightened"]
 
-[node name="Retreat" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "retreatTimer")]
+[node name="Retreat" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "area2D", "retreatTimer")]
 script = ExtResource("8_0d2m0")
 enemy = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
+area2D = NodePath("../../Area2D")
 retreatTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachine/Retreat"]
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 2)

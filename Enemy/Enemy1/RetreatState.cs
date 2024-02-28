@@ -8,6 +8,8 @@ public partial class RetreatState : Node, IState
     CharacterBody2D enemy;
     [Export]
     NavigationAgent2D navAgent;
+    [Export]
+    Area2D area2D;
     float enemySpeed;
     string enemyName;
 
@@ -25,7 +27,11 @@ public partial class RetreatState : Node, IState
     {
         timerNum = 1f;
         retreatTimer.Start(timerNum);
-       
+        
+        enemySpeed = 100f;
+
+        enemy.SetCollisionMaskValue(2, false);
+        area2D.SetCollisionMaskValue(2, false);
     }
 
     
@@ -38,7 +44,6 @@ public partial class RetreatState : Node, IState
         {
             case "Enemy_Green":
                 navAgent.TargetPosition = greenSpawn;
-                enemySpeed = 50f;
                 break;
 
         }
@@ -82,5 +87,7 @@ public partial class RetreatState : Node, IState
     public void Exit()
     {
         retreatTimer.Stop();
+        enemy.SetCollisionMaskValue(2, true);
+        area2D.SetCollisionMaskValue(2, true);
     }
 }
