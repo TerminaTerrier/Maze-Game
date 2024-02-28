@@ -8,10 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://nwghbxg72c7x" path="res://Enemy/Enemy1/enemy_green.tscn" id="3_01vv0"]
 [ext_resource type="PackedScene" uid="uid://cvybshk5bhrsc" path="res://Enemy/Enemy2/enemy_red.tscn" id="4_itok6"]
 
-[node name="Main" type="Node2D" groups=["main"]]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("pauseTimer") groups=["main"]]
 script = ExtResource("1_ykqou")
+pauseTimer = NodePath("Timer")
 
 [node name="SignalBus" parent="." instance=ExtResource("2_o6aqh")]
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 3
 
 [node name="Level" parent="." groups=["level"] instance=ExtResource("1_xt0rt")]
 
@@ -21,13 +25,17 @@ position = Vector2(568, 313)
 
 [node name="Enemy_Green" parent="Level" groups=["Enemies"] instance=ExtResource("3_01vv0")]
 process_mode = 1
+z_index = 2
 position = Vector2(538, 262)
 
 [node name="enemy_red" parent="Level" groups=["Enemies"] instance=ExtResource("4_itok6")]
 process_mode = 1
+z_index = 2
 position = Vector2(601, 262)
 
 [node name="Score_Manager" parent="." instance=ExtResource("1_bxxi7")]
 
+[connection signal="EnemyDefeat" from="SignalBus" to="." method="OnEnemyDefeat"]
 [connection signal="LifeLost" from="SignalBus" to="." method="OnLifeLost"]
 [connection signal="LivesDepleted" from="SignalBus" to="." method="OnLivesDepleted"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

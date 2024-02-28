@@ -3,17 +3,23 @@ using System;
 
 public partial class game_manager : Node2D
 {
+	[Export]
+	public Timer pauseTimer;
+	float timerNum;
 	[Signal]
 	public delegate void SaveDataEventHandler();
 	
 
 	public override void _Ready()
 	{
-		//healthComponent = GetNode<Node2D>("/root/Main/Player/HealthComponent");
-
-		// Connect(signalbus.SignalName.LifeLost, Callable.From(OnLifeLost));
-		//  Connect(signalbus.SignalName.LivesDepleted, Callable.From(OnLivesDepleted));
 		
+	}
+
+	public void OnEnemyDefeat()
+	{
+		timerNum = 0.45f;
+		pauseTimer.Start(timerNum);
+		GetTree().Paused = true;
 	}
 
 	public void OnLifeLost()
@@ -25,5 +31,10 @@ public partial class game_manager : Node2D
 	{
 		EmitSignal(SignalName.SaveData);
 		GetTree().Paused = true;
+	}
+
+	public void _on_timer_timeout()
+	{
+		GetTree().Paused = false;
 	}
 }

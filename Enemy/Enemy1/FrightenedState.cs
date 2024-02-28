@@ -69,7 +69,8 @@ public partial class FrightenedState : Node, IState
     public void _on_area_2d_body_entered(Node2D body)
     {
         if (body.Name == "Player" && stateKey == "Frightened")
-        {
+        {    
+            SignalBus.EmitSignal(signalbus.SignalName.EnemyDefeat);
             fsm.TransitionTo("Retreat");
         }
        

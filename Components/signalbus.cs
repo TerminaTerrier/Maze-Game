@@ -15,5 +15,7 @@ public partial class signalbus : Node
 	public delegate void LeftWarpEventHandler(Node2D node);
 	[Signal]
 	public delegate void RightWarpEventHandler(Node2D node);
+	[Signal]
+	public delegate void EnemyDefeatEventHandler();
 
 }
