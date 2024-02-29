@@ -12,14 +12,19 @@ public partial class score_manager : Node
 	public static int score = 0;
 	public static int highScore;
 	signalbus SignalBus;
+	[Export]
+	Timer attackScoreTimer;
 
 
 	public override void _Ready()
 	{
 		SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
 		SignalBus.ItemCollected += OnItemCollected;
-
-		if (!FileAccess.FileExists("user://savegame.save"))
+		SignalBus.EnemyDefeat += OnEnemyDefeat;
+        attackScoreTimer.OneShot = true;
+            
+        
+        if (!FileAccess.FileExists("user://savegame.save"))
 		{
             GD.Print("no save found!");
             return;
@@ -63,6 +68,31 @@ public partial class score_manager : Node
 		GD.Print(score);
 	}
 
+	private void OnEnemyDefeat()
+	{
+		int scoreMultiplier = 1;
+
+		if(scoreMultiplier == 1)
+		{
+		attackScoreTimer.Start(5f);
+		}
+		
+		score += GetAttackScore(scoreMultiplier);
+		scoreMultiplier++;
+		
+		if(attackScoreTimer.IsStopped())
+		{
+			scoreMultiplier = 1;
+		}
+
+		HighScoreCheck();
+		GD.Print(score);
+    }
+
+    private int GetAttackScore(int multiplier)
+	{
+		return 250 * multiplier;
+	}
 	private void HighScoreCheck()
 	{
 		if (score > highScore)

@@ -33,7 +33,10 @@ process_mode = 1
 z_index = 2
 position = Vector2(601, 262)
 
-[node name="Score_Manager" parent="." instance=ExtResource("1_bxxi7")]
+[node name="Score_Manager" parent="." node_paths=PackedStringArray("attackScoreTimer") instance=ExtResource("1_bxxi7")]
+attackScoreTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Score_Manager"]
 
 [connection signal="EnemyDefeat" from="SignalBus" to="." method="OnEnemyDefeat"]
 [connection signal="LifeLost" from="SignalBus" to="." method="OnLifeLost"]
