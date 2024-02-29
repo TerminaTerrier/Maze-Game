@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c7tsfo6j0p7jx"]
 
-[ext_resource type="Script" path="res://Enemy/State Machine & States/StateMachine.cs" id="1_lagva"]
+[ext_resource type="Script" path="res://Components/State Machine & States/StateMachine.cs" id="1_lagva"]
 
 [node name="StateMachine" type="Node"]
 script = ExtResource("1_lagva")

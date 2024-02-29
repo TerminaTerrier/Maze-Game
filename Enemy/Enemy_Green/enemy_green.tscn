@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=3 uid="uid://nwghbxg72c7x"]
 
-[ext_resource type="Script" path="res://Enemy/Enemy1/enemy_green.cs" id="1_gif0h"]
+[ext_resource type="Script" path="res://Enemy/Enemy_Green/enemy_green.cs" id="1_gif0h"]
 [ext_resource type="Texture2D" uid="uid://dyinihdu2sfl3" path="res://assets/12 - Pokey Bub/Running (16 x 16).png" id="2_3dlx3"]
-[ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Enemy/State Machine & States/state_machine.tscn" id="3_tts3t"]
-[ext_resource type="Script" path="res://Enemy/State Machine & States/IdleState.cs" id="4_g36pb"]
-[ext_resource type="Script" path="res://Enemy/Enemy1/ChaseState.cs" id="5_kqd6o"]
-[ext_resource type="Script" path="res://Enemy/Enemy1/ScatterState.cs" id="6_erddf"]
-[ext_resource type="Script" path="res://Enemy/Enemy1/FrightenedState.cs" id="7_qc06g"]
-[ext_resource type="Script" path="res://Enemy/Enemy1/RetreatState.cs" id="8_0d2m0"]
+[ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="3_tts3t"]
+[ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="4_g36pb"]
+[ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="5_kqd6o"]
+[ext_resource type="Script" path="res://Components/State Machine & States/ScatterState.cs" id="6_w30dq"]
+[ext_resource type="Script" path="res://Components/State Machine & States/FrightenedState.cs" id="7_w7nnv"]
+[ext_resource type="Script" path="res://Components/State Machine & States/RetreatState.cs" id="8_oqtpe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_64d6l"]
 atlas = ExtResource("2_3dlx3")
@@ -115,7 +115,7 @@ chaseTimer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="StateMachine/Chase"]
 
 [node name="Scatter" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "scatterTimer")]
-script = ExtResource("6_erddf")
+script = ExtResource("6_w30dq")
 enemy = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 scatterTimer = NodePath("Timer")
@@ -123,7 +123,7 @@ scatterTimer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="StateMachine/Scatter"]
 
 [node name="Frightened" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "frightenedTimer")]
-script = ExtResource("7_qc06g")
+script = ExtResource("7_w7nnv")
 enemy = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 frightenedTimer = NodePath("Timer")
@@ -131,7 +131,7 @@ frightenedTimer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="StateMachine/Frightened"]
 
 [node name="Retreat" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "area2D", "retreatTimer")]
-script = ExtResource("8_0d2m0")
+script = ExtResource("8_oqtpe")
 enemy = NodePath("../..")
 navAgent = NodePath("../../NavigationAgent2D")
 area2D = NodePath("../../Area2D")

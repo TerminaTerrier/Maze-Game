@@ -60,6 +60,10 @@ public partial class ScatterState : Node, IState
                 navAgent.TargetPosition = Vector2.Zero;
                 enemySpeed = 50f;
                 break;
+            case "Enemy_Red":
+                navAgent.TargetPosition = new Vector2(920, 120);
+                enemySpeed = 50f;
+                break;
 
         }
     }

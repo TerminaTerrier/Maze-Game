@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using System.Diagnostics;
+
 
 public partial class ChaseState : Node, IState
 {
@@ -47,6 +47,10 @@ public partial class ChaseState : Node, IState
         {
             case "Enemy_Green":
                 navAgent.TargetPosition = playerdata.playerPosition;
+                enemySpeed = 50f;
+                break;
+            case "Enemy_Red":
+                navAgent.TargetPosition = playerdata.playerPosition + new Vector2(1,1);
                 enemySpeed = 50f;
                 break;
         }

@@ -39,11 +39,15 @@ public partial class RetreatState : Node, IState
     private void GetTargetPath()
     {
         var greenSpawn = new Vector2(538f, 262f);
+        var redSpawn = new Vector2(601f, 262f);
 
         switch(enemyName)
         {
             case "Enemy_Green":
                 navAgent.TargetPosition = greenSpawn;
+                break;
+            case "Enemy_Red":
+                navAgent.TargetPosition = redSpawn;
                 break;
 
         }

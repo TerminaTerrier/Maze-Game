@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cuomd3fonk4k4" path="res://Level/level.tscn" id="1_xt0rt"]
 [ext_resource type="Script" path="res://game_manager.cs" id="1_ykqou"]
 [ext_resource type="PackedScene" uid="uid://dxhk6qe87huyt" path="res://Components/signal_bus.tscn" id="2_o6aqh"]
-[ext_resource type="PackedScene" uid="uid://nwghbxg72c7x" path="res://Enemy/Enemy1/enemy_green.tscn" id="3_01vv0"]
-[ext_resource type="PackedScene" uid="uid://cvybshk5bhrsc" path="res://Enemy/Enemy2/enemy_red.tscn" id="4_itok6"]
+[ext_resource type="PackedScene" uid="uid://nwghbxg72c7x" path="res://Enemy/Enemy_Green/enemy_green.tscn" id="3_01vv0"]
+[ext_resource type="PackedScene" uid="uid://cvybshk5bhrsc" path="res://Enemy/Enemy_Red/enemy_red.tscn" id="4_itok6"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("pauseTimer") groups=["main"]]
 script = ExtResource("1_ykqou")
@@ -28,7 +28,7 @@ process_mode = 1
 z_index = 2
 position = Vector2(538, 262)
 
-[node name="enemy_red" parent="Level" groups=["Enemies"] instance=ExtResource("4_itok6")]
+[node name="Enemy_Red" parent="Level" groups=["Enemies"] instance=ExtResource("4_itok6")]
 process_mode = 1
 z_index = 2
 position = Vector2(601, 262)
