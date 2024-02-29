@@ -40,23 +40,11 @@ public partial class player : CharacterBody2D
         SignalBus.LivesDepleted += OnLivesDepleted;
         SignalBus.LeftWarp += OnLeftWarp;
         SignalBus.RightWarp += OnRightWarp;
-        SignalBus.StateChange += OnStateChange;
+        //SignalBus.StateChange += OnStateChange;
         //GD.Print(Position);
     }
 
-    public void OnStateChange(string state)
-    {
-        if(state == "Retreat")
-        {
-            SetCollisionMaskValue(3, false);
-            area2D.SetCollisionMaskValue(3, false);
-        }
-        else
-        {
-            SetCollisionMaskValue(3, true);
-            area2D.SetCollisionMaskValue(3, true);
-        }
-    }
+   
 
     public void OnLivesDepleted()
     {

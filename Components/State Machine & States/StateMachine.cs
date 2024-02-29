@@ -8,6 +8,7 @@ public partial class StateMachine : Node
 	public NodePath initialState;
 	private Dictionary<string, IState> states = new Dictionary<string, IState>();
 	private IState currentState;
+	public string currentStateKey{get; set;}
 
 	signalbus SignalBus;
 	public override void _Ready()
@@ -29,6 +30,7 @@ public partial class StateMachine : Node
 		}
 		currentState = GetNode<IState>(initialState);
 		currentState.Enter();
+
 
         SignalBus.EmitSignal(signalbus.SignalName.StateChange, "Idle");
 
@@ -55,6 +57,7 @@ public partial class StateMachine : Node
 		currentState = states[key];
 		currentState.Enter();
 
+		currentStateKey = key;
 		SignalBus.EmitSignal(signalbus.SignalName.StateChange, key);
 		GD.Print(key);
 

@@ -32,6 +32,12 @@ public partial class RetreatState : Node, IState
 
         enemy.SetCollisionMaskValue(2, false);
         area2D.SetCollisionMaskValue(2, false);
+
+        enemy.SetCollisionMaskValue(3, false);
+        area2D.SetCollisionMaskValue(3, false);
+
+        enemy.SetCollisionMaskValue(4, true);
+        area2D.SetCollisionMaskValue(4, true);
     }
 
     

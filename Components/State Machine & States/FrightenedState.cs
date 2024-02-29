@@ -26,7 +26,7 @@ public partial class FrightenedState : Node, IState
     {
         enemyName = enemy.Name;
         SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
-        SignalBus.StateChange += _on_state_change;
+        //SignalBus.StateChange += _on_state_change;
     }
 
     public void Enter()
@@ -68,10 +68,21 @@ public partial class FrightenedState : Node, IState
 
     public void _on_area_2d_body_entered(Node2D body)
     {
+        var stateKey = fsm.currentStateKey;
+
         if (body.Name == "Player" && stateKey == "Frightened")
         {    
-            SignalBus.EmitSignal(signalbus.SignalName.EnemyDefeat);
-            fsm.TransitionTo("Retreat");
+            switch(enemyName)
+            {
+                case "Enemy_Green":
+                    SignalBus.EmitSignal(signalbus.SignalName.EnemyDefeat);
+                    fsm.TransitionTo("Retreat");
+                    break;
+                case "Enemy_Red":
+                    SignalBus.EmitSignal(signalbus.SignalName.EnemyDefeat);
+                    fsm.TransitionTo("Retreat");
+                    break;
+            }
         }
        
     }
@@ -81,10 +92,10 @@ public partial class FrightenedState : Node, IState
         fsm.TransitionTo("Chase");
     }
 
-    public void _on_state_change(string key)
-    {
-        stateKey = key;
-    }
+    //public void _on_state_change(string key)
+    //{
+        //stateKey = key;
+   // }
 
     public void Exit()
     {
