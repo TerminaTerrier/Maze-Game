@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+
 public partial class ScatterState : Node, IState
 {
     public StateMachine fsm { get; set; }
@@ -64,7 +65,10 @@ public partial class ScatterState : Node, IState
                 navAgent.TargetPosition = new Vector2(920, 120);
                 enemySpeed = 50f;
                 break;
-
+            case "Enemy_Purple":
+                navAgent.TargetPosition = new Vector2(540, 225);
+                enemySpeed = 50f;
+                break;
         }
     }
 

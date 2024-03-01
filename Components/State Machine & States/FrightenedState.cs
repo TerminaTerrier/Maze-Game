@@ -72,17 +72,9 @@ public partial class FrightenedState : Node, IState
 
         if (body.Name == "Player" && stateKey == "Frightened")
         {    
-            switch(enemyName)
-            {
-                case "Enemy_Green":
-                    SignalBus.EmitSignal(signalbus.SignalName.EnemyDefeat);
-                    fsm.TransitionTo("Retreat");
-                    break;
-                case "Enemy_Red":
-                    SignalBus.EmitSignal(signalbus.SignalName.EnemyDefeat);
-                    fsm.TransitionTo("Retreat");
-                    break;
-            }
+          
+            SignalBus.EmitSignal(signalbus.SignalName.EnemyDefeat);
+            fsm.TransitionTo("Retreat");
         }
        
     }

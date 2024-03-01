@@ -1,0 +1,130 @@
+[gd_scene load_steps=16 format=3 uid="uid://dfqle63ujcwfh"]
+
+[ext_resource type="Texture2D" uid="uid://b6esj5odksqlu" path="res://assets/2 - Bumpy the Robot/Running (16 x 16).png" id="1_80avt"]
+[ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="2_dtv1c"]
+[ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="4_hapst"]
+[ext_resource type="Script" path="res://Components/State Machine & States/ScatterState.cs" id="5_8sbmo"]
+[ext_resource type="Script" path="res://Components/State Machine & States/FrightenedState.cs" id="6_i864k"]
+[ext_resource type="Script" path="res://Components/State Machine & States/RetreatState.cs" id="7_nnjhg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj0cp"]
+atlas = ExtResource("1_80avt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st737"]
+atlas = ExtResource("1_80avt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k1yy"]
+atlas = ExtResource("1_80avt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h4wr"]
+atlas = ExtResource("1_80avt")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_me28x"]
+atlas = ExtResource("1_80avt")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tccfq"]
+atlas = ExtResource("1_80avt")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ajug5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj0cp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st737")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1k1yy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h4wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_me28x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tccfq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_43ucv"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sls7l"]
+radius = 8.0
+
+[node name="Enemy_Purple" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ajug5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_43ucv")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_enabled = true
+
+[node name="StateMachine" parent="." instance=ExtResource("2_dtv1c")]
+initialState = NodePath("Chase")
+
+[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "chaseTimer")]
+script = ExtResource("4_hapst")
+enemy = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+chaseTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/Chase"]
+
+[node name="Scatter" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "scatterTimer")]
+script = ExtResource("5_8sbmo")
+enemy = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+scatterTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/Scatter"]
+
+[node name="Frightened" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "frightenedTimer")]
+script = ExtResource("6_i864k")
+enemy = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+frightenedTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/Frightened"]
+
+[node name="Retreat" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "area2D", "retreatTimer")]
+script = ExtResource("7_nnjhg")
+enemy = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+area2D = NodePath("../../Area2D")
+retreatTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/Retreat"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_sls7l")
+debug_color = Color(0.827451, 0.807843, 0.780392, 0.203922)
+
+[connection signal="timeout" from="StateMachine/Chase/Timer" to="StateMachine/Chase" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Scatter/Timer" to="StateMachine/Scatter" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Frightened/Timer" to="StateMachine/Frightened" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Retreat/Timer" to="StateMachine/Retreat" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="StateMachine/Frightened" method="_on_area_2d_body_entered"]

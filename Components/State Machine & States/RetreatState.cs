@@ -46,6 +46,7 @@ public partial class RetreatState : Node, IState
     {
         var greenSpawn = new Vector2(538f, 262f);
         var redSpawn = new Vector2(601f, 262f);
+        var purpleSpawn = new Vector2(567f, 214f);
 
         switch(enemyName)
         {
@@ -55,7 +56,9 @@ public partial class RetreatState : Node, IState
             case "Enemy_Red":
                 navAgent.TargetPosition = redSpawn;
                 break;
-
+            case "Enemy_Purple":
+                navAgent.TargetPosition = purpleSpawn;
+                break;
         }
 
     }
@@ -87,10 +90,15 @@ public partial class RetreatState : Node, IState
 
     public void _on_timer_timeout()
     {
-        if(navAgent.IsTargetReached())
+        if(navAgent.IsTargetReached() && enemyName != "Enemy_Purple")
         {
             fsm.TransitionTo("Idle");
         }
+        else
+        {
+            fsm.TransitionTo("Chase");
+        }
+
         timerNum = 1f;
     }
 
