@@ -72,7 +72,7 @@ radius = 8.06226
 z_index = 1
 position = Vector2(433, 164)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 63
 motion_mode = 1
 script = ExtResource("1_sf13e")
 area2D = NodePath("HealthComponent/Area2D")
@@ -84,7 +84,7 @@ script = ExtResource("2_cf7n7")
 
 [node name="Area2D" type="Area2D" parent="HealthComponent"]
 collision_layer = 2
-collision_mask = 7
+collision_mask = 63
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent/Area2D"]
 position = Vector2(0, -1)

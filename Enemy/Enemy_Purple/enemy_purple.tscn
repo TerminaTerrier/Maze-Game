@@ -64,8 +64,8 @@ radius = 6.0
 radius = 8.0
 
 [node name="Enemy_Purple" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 7
+collision_layer = 16
+collision_mask = 19
 motion_mode = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -115,8 +115,8 @@ retreatTimer = NodePath("Timer")
 [node name="Timer" type="Timer" parent="StateMachine/Retreat"]
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 7
+collision_layer = 16
+collision_mask = 19
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 1)

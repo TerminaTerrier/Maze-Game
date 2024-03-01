@@ -33,11 +33,22 @@ public partial class RetreatState : Node, IState
         enemy.SetCollisionMaskValue(2, false);
         area2D.SetCollisionMaskValue(2, false);
 
+        switch(enemyName)
+        {
+        case "Enemy_Green":
         enemy.SetCollisionMaskValue(3, false);
         area2D.SetCollisionMaskValue(3, false);
-
-        enemy.SetCollisionMaskValue(4, true);
-        area2D.SetCollisionMaskValue(4, true);
+        break;
+        case "Enemy_Red":
+        enemy.SetCollisionMaskValue(4, false);
+        enemy.SetCollisionMaskValue(4, false);
+        break;
+        case "Enemy_Purple":
+        enemy.SetCollisionMaskValue(5, false);
+        enemy.SetCollisionMaskValue(5, false);
+        break;
+        }
+       
     }
 
     
@@ -107,5 +118,21 @@ public partial class RetreatState : Node, IState
         retreatTimer.Stop();
         enemy.SetCollisionMaskValue(2, true);
         area2D.SetCollisionMaskValue(2, true);
+
+        switch(enemyName)
+        {
+        case "Enemy_Green":
+        enemy.SetCollisionMaskValue(3, true);
+        area2D.SetCollisionMaskValue(3, true);
+        break;
+        case "Enemy_Red":
+        enemy.SetCollisionMaskValue(4, true);
+        enemy.SetCollisionMaskValue(4, true);
+        break;
+        case "Enemy_Purple":
+        enemy.SetCollisionMaskValue(5, true);
+        enemy.SetCollisionMaskValue(5, true);
+        break;
+        }
     }
 }
