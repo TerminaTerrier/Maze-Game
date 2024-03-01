@@ -32,7 +32,7 @@ public partial class StateMachine : Node
 		currentState.Enter();
 
 
-        SignalBus.EmitSignal(signalbus.SignalName.StateChange, "Idle");
+        
 
         //GD.Print(states.Keys);
     }

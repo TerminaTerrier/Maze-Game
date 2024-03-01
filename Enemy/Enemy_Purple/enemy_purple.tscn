@@ -63,7 +63,7 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_sls7l"]
 radius = 8.0
 
-[node name="Enemy_Purple" type="CharacterBody2D"]
+[node name="Enemy_Purple" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 16
 collision_mask = 19
 motion_mode = 1

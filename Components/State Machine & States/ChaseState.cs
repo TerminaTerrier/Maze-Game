@@ -35,7 +35,7 @@ public partial class ChaseState : Node, IState
         chaseTimer.Start(timerNum);
 
          targetNum = rng.RandiRange(1, 5);
-
+        SignalBus.EmitSignal(signalbus.SignalName.StateChange, "Chase");
     }
 
     public void Update(float delta)
