@@ -42,6 +42,7 @@ public partial class ChaseState : Node, IState
     {
         //GD.Print(playerdata.playerPosition);
         GetTargetPath();
+        GD.Print("I am in Chase");
     }
 
     private void GetTargetPath()
@@ -69,7 +70,7 @@ public partial class ChaseState : Node, IState
     private Vector2 RandomTarget()
     {
         Vector2 randTargetVector = new Vector2();
-        GD.Print(targetNum);
+        //GD.Print(targetNum);
 
         switch(targetNum)
         {

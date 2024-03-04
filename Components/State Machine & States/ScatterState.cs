@@ -37,6 +37,7 @@ public partial class ScatterState : Node, IState
     public void Update(float delta)
     {
         GetScatterTarget();
+        GD.Print("I am in Scatter");
     }
 
     public void PhysicsUpdate(float delta)

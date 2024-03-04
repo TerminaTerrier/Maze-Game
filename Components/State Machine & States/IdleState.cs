@@ -32,7 +32,7 @@ public partial class IdleState : Node, IState
     public void Update(float delta)
     {
         // GD.Print(GetTimeLeft);
-        
+        GD.Print("I am Idle");
     }
 
     public void PhysicsUpdate(float delta)

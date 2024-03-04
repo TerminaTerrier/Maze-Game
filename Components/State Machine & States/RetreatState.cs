@@ -30,6 +30,9 @@ public partial class RetreatState : Node, IState
         
         enemySpeed = 100f;
 
+        enemy.SetCollisionMaskValue(1, false);
+        area2D.SetCollisionMaskValue(1, false);
+
         enemy.SetCollisionMaskValue(2, false);
         area2D.SetCollisionMaskValue(2, false);
 
@@ -80,6 +83,8 @@ public partial class RetreatState : Node, IState
         {
             GetTargetPath();
         }
+
+        GD.Print("I am in Retreat");
     }
 
     public void PhysicsUpdate(float delta)
@@ -105,17 +110,25 @@ public partial class RetreatState : Node, IState
         {
             fsm.TransitionTo("Idle");
         }
-        else
+        else if(navAgent.IsTargetReached() && enemyName == "Enemy_Purple")
         {
             fsm.TransitionTo("Chase");
         }
-
+        else
+        {
+            return;
+        }
+       
         timerNum = 1f;
     }
 
     public void Exit()
     {
         retreatTimer.Stop();
+
+        enemy.SetCollisionMaskValue(1, true);
+        area2D.SetCollisionMaskValue(1, true);
+
         enemy.SetCollisionMaskValue(2, true);
         area2D.SetCollisionMaskValue(2, true);
 
