@@ -70,7 +70,7 @@ public partial class IdleState : Node, IState
 
     public void OnItemCollected(StringName collectable)
     {
-        if (collectable == "power_up")
+        if (collectable == "power_up" && fsm.currentStateKey == "Idle")
         {
             fsm.TransitionTo("Frightened");
         }

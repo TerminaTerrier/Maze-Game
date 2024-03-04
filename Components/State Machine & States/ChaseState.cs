@@ -24,6 +24,7 @@ public partial class ChaseState : Node, IState
     public void Start()
     {
         enemyName = enemy.Name;
+
         
         SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
         //GD.Print(enemyName);
@@ -35,6 +36,8 @@ public partial class ChaseState : Node, IState
         chaseTimer.Start(timerNum);
 
          targetNum = rng.RandiRange(1, 5);
+
+        SignalBus.ItemCollected += OnItemCollected;
         SignalBus.EmitSignal(signalbus.SignalName.StateChange, "Chase");
     }
 
@@ -115,6 +118,14 @@ public partial class ChaseState : Node, IState
     public void _on_timer_timeout()
     {
         fsm.TransitionTo("Scatter");
+    }
+
+    public void OnItemCollected(StringName collectable)
+    {
+        if(collectable == "power_up" && fsm.currentStateKey == "Chase")
+        {
+            fsm.TransitionTo("Frightened");
+        }
     }
 
     public void Exit()

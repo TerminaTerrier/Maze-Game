@@ -80,7 +80,7 @@ public partial class ScatterState : Node, IState
 
     public void OnItemCollected(StringName collectable)
     {
-        if (collectable == "power_up")
+        if (collectable == "power_up" && fsm.currentStateKey == "Scatter")
         {
             fsm.TransitionTo("Frightened");
         }
