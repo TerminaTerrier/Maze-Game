@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfqle63ujcwfh"]
+[gd_scene load_steps=17 format=3 uid="uid://dfqle63ujcwfh"]
 
 [ext_resource type="Texture2D" uid="uid://b6esj5odksqlu" path="res://assets/2 - Bumpy the Robot/Running (16 x 16).png" id="1_80avt"]
 [ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="2_dtv1c"]
+[ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="3_rno5t"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="4_hapst"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ScatterState.cs" id="5_8sbmo"]
 [ext_resource type="Script" path="res://Components/State Machine & States/FrightenedState.cs" id="6_i864k"]
@@ -65,7 +66,7 @@ radius = 8.0
 
 [node name="Enemy_Purple" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 16
-collision_mask = 19
+collision_mask = 83
 motion_mode = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -80,6 +81,13 @@ avoidance_enabled = true
 
 [node name="StateMachine" parent="." instance=ExtResource("2_dtv1c")]
 initialState = NodePath("Chase")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timer", "enemy")]
+script = ExtResource("3_rno5t")
+timer = NodePath("Timer")
+enemy = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
 
 [node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "chaseTimer")]
 script = ExtResource("4_hapst")
@@ -123,6 +131,7 @@ position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_sls7l")
 debug_color = Color(0.827451, 0.807843, 0.780392, 0.203922)
 
+[connection signal="timeout" from="StateMachine/Idle/Timer" to="StateMachine/Idle" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Chase/Timer" to="StateMachine/Chase" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Scatter/Timer" to="StateMachine/Scatter" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Frightened/Timer" to="StateMachine/Frightened" method="_on_timer_timeout"]

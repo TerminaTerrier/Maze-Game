@@ -32,6 +32,7 @@ public partial class ChaseState : Node, IState
 
     public void Enter()
     {
+        enemy.SetCollisionMaskValue(7, false);
         timerNum = rng.RandfRange(15f, 35f);
         chaseTimer.Start(timerNum);
 

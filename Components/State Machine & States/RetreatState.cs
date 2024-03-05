@@ -106,19 +106,15 @@ public partial class RetreatState : Node, IState
 
     public void _on_timer_timeout()
     {
-        if(navAgent.IsTargetReached() && enemyName != "Enemy_Purple")
+        if(navAgent.IsTargetReached())
         {
             fsm.TransitionTo("Idle");
-        }
-        else if(navAgent.IsTargetReached() && enemyName == "Enemy_Purple")
-        {
-            fsm.TransitionTo("Chase");
         }
         else
         {
             return;
         }
-       
+        
         timerNum = 1f;
     }
 

@@ -24,6 +24,7 @@ public partial class IdleState : Node, IState
 
     public void Enter()
     {
+        enemy.SetCollisionMaskValue(7, true);
         timerNum = rng.RandfRange(10f, 15f);
         timer.Start(timerNum);
         SignalBus.ItemCollected += OnItemCollected;
