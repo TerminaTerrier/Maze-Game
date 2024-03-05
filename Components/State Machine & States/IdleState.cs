@@ -29,6 +29,8 @@ public partial class IdleState : Node, IState
         timer.Start(timerNum);
         SignalBus.ItemCollected += OnItemCollected;
         SignalBus.EmitSignal(signalbus.SignalName.StateChange, "Idle");
+
+        
     }
 
     public void Update(float delta)
@@ -80,7 +82,7 @@ public partial class IdleState : Node, IState
 
     public void Exit()
     {
-        
+        enemy.SetCollisionMaskValue(7, false);
 
         timer.Stop();
 

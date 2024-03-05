@@ -82,13 +82,6 @@ avoidance_enabled = true
 [node name="StateMachine" parent="." instance=ExtResource("2_dtv1c")]
 initialState = NodePath("Chase")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timer", "enemy")]
-script = ExtResource("3_rno5t")
-timer = NodePath("Timer")
-enemy = NodePath("../..")
-
-[node name="Timer" type="Timer" parent="StateMachine/Idle"]
-
 [node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "chaseTimer")]
 script = ExtResource("4_hapst")
 enemy = NodePath("../..")
@@ -113,6 +106,13 @@ frightenedTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="StateMachine/Frightened"]
 
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timer", "enemy")]
+script = ExtResource("3_rno5t")
+timer = NodePath("Timer")
+enemy = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+
 [node name="Retreat" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "area2D", "retreatTimer")]
 script = ExtResource("7_nnjhg")
 enemy = NodePath("../..")
@@ -131,9 +131,9 @@ position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_sls7l")
 debug_color = Color(0.827451, 0.807843, 0.780392, 0.203922)
 
-[connection signal="timeout" from="StateMachine/Idle/Timer" to="StateMachine/Idle" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Chase/Timer" to="StateMachine/Chase" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Scatter/Timer" to="StateMachine/Scatter" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Frightened/Timer" to="StateMachine/Frightened" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Idle/Timer" to="StateMachine/Idle" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Retreat/Timer" to="StateMachine/Retreat" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="StateMachine/Frightened" method="_on_area_2d_body_entered"]
