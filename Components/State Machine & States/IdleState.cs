@@ -18,12 +18,13 @@ public partial class IdleState : Node, IState
 
     public void Start()
     {
-        timerNum = rng.RandfRange(10f, 15f);
+       
         SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
     }
 
     public void Enter()
     {
+        timerNum = rng.RandfRange(10f, 15f);
         timer.Start(timerNum);
         SignalBus.ItemCollected += OnItemCollected;
         SignalBus.EmitSignal(signalbus.SignalName.StateChange, "Idle");
@@ -80,7 +81,7 @@ public partial class IdleState : Node, IState
     {
         
 
-        
+        timer.Stop();
 
     }
 }

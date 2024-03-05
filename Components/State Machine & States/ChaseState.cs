@@ -93,6 +93,11 @@ public partial class ChaseState : Node, IState
             randTargetVector = new Vector2(568f, 313f);
             break;
         }
+
+        if(enemyName == "Enemy_Purple" && navAgent.IsTargetReached())
+        {
+          targetNum = rng.RandiRange(1, 5);
+        }
          
         return randTargetVector;
     }
@@ -107,6 +112,8 @@ public partial class ChaseState : Node, IState
         enemy.Velocity = velocity;
 
         enemy.MoveAndSlide();
+
+        
          
         //GD.Print(navAgent.IsTargetReachable());
         //GD.Print(dir);
