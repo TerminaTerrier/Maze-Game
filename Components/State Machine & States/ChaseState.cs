@@ -93,7 +93,7 @@ public partial class ChaseState : Node, IState
             randTargetVector = new Vector2(281f, 455f);
             break;
             case 4:
-            randTargetVector = new Vector2(855f, 453f);
+            randTargetVector = new Vector2(856f, 457f);
             break;
             case 5:
             randTargetVector = new Vector2(568f, 313f);
