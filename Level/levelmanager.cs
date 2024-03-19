@@ -32,7 +32,7 @@ public partial class levelmanager : Node
 		CreatePellets();
 		CreatePowerUp();
 
-		SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+		SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
 		SignalBus.ItemCollected += OnItemCollected;
 	}
 

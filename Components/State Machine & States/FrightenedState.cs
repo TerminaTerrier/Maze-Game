@@ -25,7 +25,7 @@ public partial class FrightenedState : Node, IState
     public void Start()
     {
         enemyName = enemy.Name;
-        SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+        SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
         //SignalBus.StateChange += _on_state_change;
     }
 

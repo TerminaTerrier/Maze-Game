@@ -18,7 +18,7 @@ public partial class score_manager : Node
 
 	public override void _Ready()
 	{
-		SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+		SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
 		SignalBus.ItemCollected += OnItemCollected;
 		SignalBus.EnemyDefeat += OnEnemyDefeat;
         attackScoreTimer.OneShot = true;

@@ -13,7 +13,7 @@ public partial class health : Node2D
     public override void _Ready()
     {
         lives = 2;
-        SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+        SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
         SignalBus.StateChange += OnStateChange;
     }
 

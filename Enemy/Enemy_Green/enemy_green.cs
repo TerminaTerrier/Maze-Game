@@ -10,7 +10,7 @@ public partial class enemy_green : CharacterBody2D
 
     public override void _Ready()
     {
-        SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+        SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
 
         SignalBus.LifeLost += OnLifeLost;
 

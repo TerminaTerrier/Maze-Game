@@ -19,7 +19,7 @@ public partial class IdleState : Node, IState
     public void Start()
     {
        
-        SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+        SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
     }
 
     public void Enter()

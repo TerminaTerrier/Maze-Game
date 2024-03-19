@@ -13,7 +13,7 @@ public partial class StateMachine : Node
 	signalbus SignalBus;
 	public override void _Ready()
 	{
-        SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+        SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
 
         foreach (Node node in GetChildren())
 		{

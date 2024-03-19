@@ -26,7 +26,7 @@ public partial class ChaseState : Node, IState
         enemyName = enemy.Name;
 
         
-        SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+        SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
         //GD.Print(enemyName);
     }
 

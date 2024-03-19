@@ -7,7 +7,7 @@ public partial class pellet : Node2D
     signalbus SignalBus;
     public override void _Ready()
     {
-        SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+        SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
     }
 
     public void OnArea2DBodyEntered(Node2D body)

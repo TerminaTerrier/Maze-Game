@@ -23,7 +23,7 @@ public partial class ScatterState : Node, IState
         enemyName = enemy.Name;
        
         
-        SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+        SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
     }
 
     public void Enter()

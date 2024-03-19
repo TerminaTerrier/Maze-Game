@@ -5,15 +5,22 @@ public partial class savegame : Node
 {
 	Node ScoreManager;
 	game_manager Main;
+	sceneloader Sceneloader;
 
 	public override void _Ready()
 	{
-		Main = GetNode<game_manager>("/root/Main");
-		ScoreManager = GetNode<Node>("/root/Main/Score_Manager");
-
-		Main.SaveData += OnSaveData;
+		GetNode<sceneloader>("root/Sceneloader");
+		
+		Sceneloader.MainLoad += OnMainLoad;
 	}
 
+	public void OnMainLoad()
+	{
+		Main = GetNode<game_manager>("/root/Sceneloader/Main");
+		ScoreManager = GetNode<Node>("/root/Sceneloader/Main/Score_Manager");
+		Main.SaveData += OnSaveData;
+	}
+	
 	public void OnSaveData()
 	{
 		SaveGame();
