@@ -51,7 +51,7 @@ public partial class ChaseState : Node, IState
     {
         //GD.Print(playerdata.playerPosition);
         GetTargetPath();
-        GD.Print("I am in Chase");
+        //GD.Print("I am in Chase");
     }
 
     private void GetTargetPath()

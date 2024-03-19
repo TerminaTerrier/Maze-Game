@@ -41,7 +41,7 @@ public partial class FrightenedState : Node, IState
     public void Update(float delta)
     {
         GetTargetPath();
-        GD.Print("I am Frightened");
+        //GD.Print("I am Frightened");
     }
 
     private void GetTargetPath()

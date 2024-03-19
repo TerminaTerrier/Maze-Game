@@ -7,6 +7,7 @@ using Godot.Collections;
 
 public partial class levelmanager : Node
 {
+	static int pelletCount;
 	[Export]
 	TileMap tilemap;
 	//using Godot's arrays here because C# arrrays and list were not compatible with the tilemap methods
@@ -32,6 +33,7 @@ public partial class levelmanager : Node
 		CreatePowerUp();
 
 		SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+		SignalBus.ItemCollected += OnItemCollected;
 	}
 
 	private void ConvertArray()
@@ -59,9 +61,11 @@ public partial class levelmanager : Node
 			pelletInstance.Position = tile;
 			AddChild(pelletInstance);
 			pelletInstance.AddToGroup("Collectables");
+			pelletCount++;
 
 
 		}
+		GD.Print(pelletCount);
 	}
 
 	private void CreatePowerUp()
@@ -76,12 +80,30 @@ public partial class levelmanager : Node
 			var checkGroup = GetTree().GetNodesInGroup("Collectables");
 			if (checkGroup != null)
 			{
-				GD.Print("nodes are in group!");
+				//GD.Print("nodes are in group!");
 				GD.Print(checkGroup.Count);
 			}
 		}
 
 
+	}
+
+	public void OnItemCollected(StringName collectable)
+	{
+		if(collectable == "pellet")
+		{
+			pelletCount--;
+			levelClearTracker();
+		}
+		GD.Print(pelletCount);
+	}
+
+	public void levelClearTracker()
+	{
+		if(pelletCount == 0)
+		{
+			SignalBus.EmitSignal(signalbus.SignalName.LevelClear);
+		}
 	}
 
 	public void _on_level_warp_left_body_entered(Node2D body)

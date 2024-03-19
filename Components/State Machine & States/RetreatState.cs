@@ -84,7 +84,7 @@ public partial class RetreatState : Node, IState
             GetTargetPath();
         }
 
-        GD.Print("I am in Retreat");
+       // GD.Print("I am in Retreat");
     }
 
     public void PhysicsUpdate(float delta)

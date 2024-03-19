@@ -31,13 +31,13 @@ public partial class ScatterState : Node, IState
         timerNum = rng.RandfRange(5f, 10f);
         scatterTimer.Start(timerNum);
         SignalBus.ItemCollected += OnItemCollected;
-        GD.Print("Scatter entered!");
+      //  GD.Print("Scatter entered!");
     }
 
     public void Update(float delta)
     {
         GetScatterTarget();
-        GD.Print("I am in Scatter");
+      //  GD.Print("I am in Scatter");
     }
 
     public void PhysicsUpdate(float delta)

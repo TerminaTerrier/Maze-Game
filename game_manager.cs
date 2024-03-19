@@ -3,6 +3,8 @@ using System;
 
 public partial class game_manager : Node2D
 {
+	[Signal]
+	public delegate void LoadSceneEventHandler();
 	[Export]
 	public Timer pauseTimer;
 	float timerNum;
@@ -13,6 +15,11 @@ public partial class game_manager : Node2D
 	public override void _Ready()
 	{
 		
+	}
+
+	public void OnLevelClear()
+	{
+		EmitSignal(SignalName.LoadScene);
 	}
 
 	public void OnEnemyDefeat()
@@ -39,4 +46,6 @@ public partial class game_manager : Node2D
 	{
 		GetTree().Paused = false;
 	}
+
+	
 }

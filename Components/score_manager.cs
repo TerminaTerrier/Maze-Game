@@ -49,7 +49,7 @@ public partial class score_manager : Node
 
 		highScore = (int)nodeData["HighScore"];
 
-		GD.Print(highScore);
+		//GD.Print(highScore);
 	}
 
 	private void OnItemCollected(StringName collectable)
@@ -65,7 +65,7 @@ public partial class score_manager : Node
 			score += 50;
 			HighScoreCheck();
 		}
-		GD.Print(score);
+		//GD.Print(score);
 	}
 
 	private void OnEnemyDefeat()
