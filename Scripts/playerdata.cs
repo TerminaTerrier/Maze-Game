@@ -1,32 +1,32 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 public partial class playerdata : Node
 {
-    sceneloader Sceneloader;
+    boot Boot;
     game_manager Main;
+    Node Level;
     Node2D Player;
     public static Vector2 playerPosition;
 
 
     public override void _Ready()
     {
-      Sceneloader = GetNode<sceneloader>("/root/Sceneloader");  
-      Sceneloader.MainLoad +=  OnMainLoad;
-      
+      //Boot = GetNode<boot>("/root/boot");  
+      //Boot.Boot +=  OnBoot;
+      //GD.Print(Sceneloader == null);
     }
-
-    public void OnMainLoad()
+    
+    public void OnBoot(Node2D main)
     {
-      Main = GetNode<game_manager>("/root/Sceneloader/Main");
-      Player = GetNode<Node2D>("/root/Sceneloader/Main/Level/Player");
+      //Main = GetNode<game_manager>("/root/Sceneloader/Main");
+      //Player = GetNode<CharacterBody2D>("/root/Sceneloader/Main/Level/Player");
+      Level = main.GetNode<Node>("Level");
+      Player = Level.GetNode<Node2D>("Player");
 
-      Main.LoadScene += OnMainReload;
-    }
-    public void OnMainReload()
-    {
-        Player = GetNode<Node2D>("/root/Sceneloader/Main/Level/Player");
-
+      //GD.Print(Main == null);  
+      //GD.Print(Player == null);
     }
     public override void _Process(double delta)
     {

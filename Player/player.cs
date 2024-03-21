@@ -35,7 +35,7 @@ public partial class player : CharacterBody2D
         rayCast_2 = GetNode<RayCast2D>("RayCast2D_2");
         currentDirection = Direction.Left;
 
-        SignalBus = GetNode<signalbus>("/root/Main/SignalBus");
+        SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
         SignalBus.LifeLost += OnLifeLost;
         SignalBus.LivesDepleted += OnLivesDepleted;
         SignalBus.LeftWarp += OnLeftWarp;
