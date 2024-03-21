@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfqle63ujcwfh"]
+[gd_scene load_steps=18 format=3 uid="uid://dfqle63ujcwfh"]
 
 [ext_resource type="Texture2D" uid="uid://b6esj5odksqlu" path="res://assets/2 - Bumpy the Robot/Running (16 x 16).png" id="1_80avt"]
+[ext_resource type="Script" path="res://Enemy/Enemy_Purple/enemy_purple.cs" id="1_wcc7u"]
 [ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="2_dtv1c"]
 [ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="3_rno5t"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="4_hapst"]
@@ -68,6 +69,7 @@ radius = 8.0
 collision_layer = 16
 collision_mask = 83
 motion_mode = 1
+script = ExtResource("1_wcc7u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ajug5")

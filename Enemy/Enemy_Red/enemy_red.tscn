@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvybshk5bhrsc"]
+[gd_scene load_steps=14 format=3 uid="uid://cvybshk5bhrsc"]
 
+[ext_resource type="Script" path="res://Enemy/Enemy_Red/enemy_red.cs" id="1_2lulb"]
 [ext_resource type="Texture2D" uid="uid://8pgnbknxgqw5" path="res://assets/11 - Spikey Bub/Idle (16 x 16).png" id="1_xi6yi"]
 [ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="2_5kxce"]
 [ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="3_dtxxt"]
@@ -41,6 +42,7 @@ z_index = 1
 collision_layer = 8
 collision_mask = 75
 motion_mode = 1
+script = ExtResource("1_2lulb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_071t3")
