@@ -32,9 +32,9 @@ public partial class game_manager : Node2D
 	public void OnLifeLost()
 	{
 		GD.Print("ouch!");
-	   //timerNum = 1f;
-	   //pauseTimer.Start(timerNum);
-	  // GetTree().Paused = true;
+	     timerNum = 1f;
+	    pauseTimer.Start(timerNum);
+	    GetTree().Paused = true;
 	}
 
 	public void OnLivesDepleted()
