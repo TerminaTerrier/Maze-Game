@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://lkxnhn4unqa5"]
+[gd_scene load_steps=11 format=3 uid="uid://lkxnhn4unqa5"]
 
 [ext_resource type="PackedScene" uid="uid://cf3rgm45s58iu" path="res://Components/score_manager.tscn" id="1_bxxi7"]
 [ext_resource type="PackedScene" uid="uid://cufgy64ohch65" path="res://Player/player.tscn" id="1_k8am7"]
 [ext_resource type="PackedScene" uid="uid://cuomd3fonk4k4" path="res://Level/level.tscn" id="1_xt0rt"]
 [ext_resource type="Script" path="res://game_manager.cs" id="1_ykqou"]
 [ext_resource type="PackedScene" uid="uid://dxhk6qe87huyt" path="res://Components/signal_bus.tscn" id="2_o6aqh"]
+[ext_resource type="PackedScene" uid="uid://iwcnvegmewfx" path="res://hud.tscn" id="2_r4u0o"]
 [ext_resource type="PackedScene" uid="uid://nwghbxg72c7x" path="res://Enemy/Enemy_Green/enemy_green.tscn" id="3_01vv0"]
 [ext_resource type="PackedScene" uid="uid://cvybshk5bhrsc" path="res://Enemy/Enemy_Red/enemy_red.tscn" id="4_itok6"]
 [ext_resource type="PackedScene" uid="uid://bgtx72ka6a8wp" path="res://Enemy/Enemy_Blue/enemy_blue.tscn" id="5_njt0x"]
@@ -18,6 +19,15 @@ pauseTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_r4u0o")]
+anchors_preset = 15
+offset_left = 62.0
+offset_top = 12.0
+offset_right = -49.744
+offset_bottom = -132.504
 
 [node name="Level" parent="." groups=["level"] instance=ExtResource("1_xt0rt")]
 

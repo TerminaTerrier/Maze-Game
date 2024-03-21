@@ -542,7 +542,7 @@ tilemap = NodePath("TileMap")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(568, 313)
-zoom = Vector2(1.84, 1.9)
+zoom = Vector2(1.84, 1.65)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_iitj1")

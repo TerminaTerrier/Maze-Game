@@ -8,7 +8,10 @@ using System.Reflection.Emit;
 
 public partial class score_manager : Node
 {
-
+	[Signal]
+	public delegate void HighScoreChangeEventHandler(int highScore);
+	[Signal]
+	public delegate void ScoreChangeEventHandler(int score);
 	public static int score = 0;
 	public static int highScore;
 	signalbus SignalBus;
@@ -48,7 +51,7 @@ public partial class score_manager : Node
 		var nodeData = new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)json.Data);
 
 		highScore = (int)nodeData["HighScore"];
-
+		EmitSignal(SignalName.HighScoreChange, highScore);
 		//GD.Print(highScore);
 	}
 
@@ -65,6 +68,7 @@ public partial class score_manager : Node
 			score += 50;
 			HighScoreCheck();
 		}
+		EmitSignal(SignalName.ScoreChange, score);
 		//GD.Print(score);
 	}
 
@@ -84,7 +88,7 @@ public partial class score_manager : Node
 		{
 			scoreMultiplier = 1;
 		}
-
+		EmitSignal(SignalName.ScoreChange, score);
 		HighScoreCheck();
 		GD.Print(score);
     }
@@ -98,6 +102,7 @@ public partial class score_manager : Node
 		if (score > highScore)
 		{
 			highScore = score;
+			EmitSignal(SignalName.HighScoreChange, highScore);
 		}
 	}
 
