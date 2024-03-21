@@ -4,6 +4,7 @@ using System;
 public partial class enemy_purple : CharacterBody2D
 {
 	signalbus SignalBus;
+	
 	public override void _Ready()
 	{
 		SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");

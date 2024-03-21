@@ -1,11 +1,9 @@
 using Godot;
 using System;
 
-public partial class enemy_green : CharacterBody2D
+public partial class enemy_blue : CharacterBody2D
 {
-    [Export]
-    public float gEnemySpeed { get; set;  } = 2f;
-    StateMachine stateMachine;
+	StateMachine stateMachine;
     signalbus SignalBus;
 
     public override void _Ready()
@@ -20,7 +18,7 @@ public partial class enemy_green : CharacterBody2D
     
     public void OnLifeLost()
     {
-        Vector2 spawn = new Vector2(538, 262);
+        Vector2 spawn = new Vector2(568, 264);
         Position = spawn;
         stateMachine.TransitionTo("Idle");
     }
