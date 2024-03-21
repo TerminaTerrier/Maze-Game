@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgtx72ka6a8wp"]
+
+[ext_resource type="Texture2D" uid="uid://c1y887mq2yqyx" path="res://assets/10 - Bub/Idle (16 x 16).png" id="1_yj5tc"]
+[ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="2_i4f52"]
+[ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="3_aqx3g"]
+[ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="6_na4ke"]
+[ext_resource type="Script" path="res://Components/State Machine & States/RetreatState.cs" id="7_t7xkx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56q7s"]
+atlas = ExtResource("1_yj5tc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ne0lm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56q7s")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqqt1"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8s0d"]
+radius = 6.0
+
+[node name="Enemy_Blue" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 32
+collision_mask = 99
+motion_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.1875, 1.09375)
+sprite_frames = SubResource("SpriteFrames_ne0lm")
+animation = &"new_animation"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_oqqt1")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_enabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 35
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_d8s0d")
+debug_color = Color(0.827451, 0.807843, 0.780392, 0.203922)
+
+[node name="StateMachine" parent="." instance=ExtResource("2_i4f52")]
+initialState = NodePath("Idle")
+
+[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "chaseTimer")]
+script = ExtResource("3_aqx3g")
+enemy = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+chaseTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/Chase"]
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("timer", "enemy")]
+script = ExtResource("6_na4ke")
+timer = NodePath("Timer")
+enemy = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+
+[node name="Retreat" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "navAgent", "area2D", "retreatTimer")]
+script = ExtResource("7_t7xkx")
+enemy = NodePath("../..")
+navAgent = NodePath("../../NavigationAgent2D")
+area2D = NodePath("../../Area2D")
+retreatTimer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/Retreat"]
+
+[connection signal="timeout" from="StateMachine/Chase/Timer" to="StateMachine/Chase" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Idle/Timer" to="StateMachine/Idle" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Retreat/Timer" to="StateMachine/Retreat" method="_on_timer_timeout"]

@@ -73,6 +73,10 @@ public partial class ChaseState : Node, IState
                 navAgent.TargetPosition = RandomTarget();
                 enemySpeed = 50f;
                 break;
+            case "Enemy_Blue":
+                navAgent.TargetPosition = playerdata.playerPosition;
+                enemySpeed = 75f;
+                break;
         }
     }
 
@@ -130,15 +134,27 @@ public partial class ChaseState : Node, IState
 
     public void _on_timer_timeout()
     {
+        if(enemyName != "Enemy_Blue")
+        {
         fsm.TransitionTo("Scatter");
+        }
+        else if(enemyName == "Enemy_Blue")
+        {
+            fsm.TransitionTo("Retreat");
+        }
     }
 
     public void OnItemCollected(StringName collectable)
     {
-        if(collectable == "power_up" && fsm.currentStateKey == "Chase")
+        if(collectable == "power_up" && fsm.currentStateKey == "Chase" && enemyName != "Enemy_Blue")
         {
             fsm.TransitionTo("Frightened");
         }
+        else
+        {
+            return;
+        }
+       
     }
 
     public void Exit()

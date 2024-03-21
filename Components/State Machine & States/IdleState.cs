@@ -14,11 +14,12 @@ public partial class IdleState : Node, IState
     RandomNumberGenerator rng = new RandomNumberGenerator();
     float timerNum;
     Vector2 move = new Vector2(0, 1);
+    string enemyName;
     signalbus SignalBus;
 
     public void Start()
     {
-       
+       enemyName = enemy.Name;
         SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
     }
 
@@ -69,14 +70,25 @@ public partial class IdleState : Node, IState
 
     public void _on_timer_timeout() 
     {
-      fsm.TransitionTo("Chase");
+        if(enemyName != "Enemy_Blue")
+        {
+            fsm.TransitionTo("Chase");
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void OnItemCollected(StringName collectable)
     {
-        if (collectable == "power_up" && fsm.currentStateKey == "Idle")
+        if (collectable == "power_up" && fsm.currentStateKey == "Idle" && enemyName != "Enemy_Blue")
         {
             fsm.TransitionTo("Frightened");
+        }
+        else if(collectable == "power_up" && fsm.currentStateKey == "Idle" && enemyName == "Enemy_Blue")
+        {
+            fsm.TransitionTo("Chase");
         }
     }
 

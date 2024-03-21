@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://lkxnhn4unqa5"]
+[gd_scene load_steps=10 format=3 uid="uid://lkxnhn4unqa5"]
 
 [ext_resource type="PackedScene" uid="uid://cf3rgm45s58iu" path="res://Components/score_manager.tscn" id="1_bxxi7"]
 [ext_resource type="PackedScene" uid="uid://cufgy64ohch65" path="res://Player/player.tscn" id="1_k8am7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dxhk6qe87huyt" path="res://Components/signal_bus.tscn" id="2_o6aqh"]
 [ext_resource type="PackedScene" uid="uid://nwghbxg72c7x" path="res://Enemy/Enemy_Green/enemy_green.tscn" id="3_01vv0"]
 [ext_resource type="PackedScene" uid="uid://cvybshk5bhrsc" path="res://Enemy/Enemy_Red/enemy_red.tscn" id="4_itok6"]
+[ext_resource type="PackedScene" uid="uid://bgtx72ka6a8wp" path="res://Enemy/Enemy_Blue/enemy_blue.tscn" id="5_njt0x"]
 [ext_resource type="PackedScene" uid="uid://dfqle63ujcwfh" path="res://Enemy/Enemy_Purple/enemy_purple.tscn" id="8_hwqd7"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("pauseTimer") groups=["main"]]
@@ -23,6 +24,9 @@ process_mode = 3
 [node name="Player" parent="Level" groups=["player"] instance=ExtResource("1_k8am7")]
 process_mode = 1
 position = Vector2(568, 313)
+
+[node name="Enemy_Blue" parent="Level" instance=ExtResource("5_njt0x")]
+position = Vector2(568, 264)
 
 [node name="Enemy_Purple" parent="Level" instance=ExtResource("8_hwqd7")]
 z_index = 2

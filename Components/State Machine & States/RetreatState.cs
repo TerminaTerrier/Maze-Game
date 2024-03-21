@@ -61,6 +61,7 @@ public partial class RetreatState : Node, IState
         var greenSpawn = new Vector2(538f, 262f);
         var redSpawn = new Vector2(601f, 262f);
         var purpleSpawn = new Vector2(568f, 253f);
+        var blueSpawn = new Vector2(568, 264);
 
         switch(enemyName)
         {
@@ -72,6 +73,10 @@ public partial class RetreatState : Node, IState
                 break;
             case "Enemy_Purple":
                 navAgent.TargetPosition = purpleSpawn;
+                break;
+            case "Enemy_Blue":
+                navAgent.TargetPosition = blueSpawn;
+                enemySpeed = 25f;
                 break;
         }
 
