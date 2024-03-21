@@ -24,27 +24,30 @@ public partial class health : Node2D
         GD.Print(enemyName);
         if (body.IsInGroup("Enemies") == true)
         {
-            if (lives >= 0 && lives <= maxLives && enemyState != "Frightened" && enemyState != "Retreat" && enemyName != "Enemy_Blue")
+             
+             if (lives <= 0)
+            {
+                lives--;
+                SignalBus.EmitSignal(signalbus.SignalName.LivesDepleted);
+            }
+
+            if (lives > 0 && lives <= maxLives && enemyState != "Frightened" && enemyState != "Retreat" && enemyName != "Enemy_Blue")
             {
                 lives--;
                 SignalBus.EmitSignal(signalbus.SignalName.LifeLost);
                 GD.Print(lives);
-            }
-            else if (lives < 0)
-            {
-                SignalBus.EmitSignal(signalbus.SignalName.LivesDepleted);
             }
             
-            if(lives >= 0 && lives <= maxLives && enemyName == "Enemy_Blue")
+           
+            
+            if(lives > 0 && lives <= maxLives && enemyName == "Enemy_Blue")
             {
                 lives--;
                 SignalBus.EmitSignal(signalbus.SignalName.LifeLost);
                 GD.Print(lives);
             }
-            else if (lives < 0)
-            {
-                SignalBus.EmitSignal(signalbus.SignalName.LivesDepleted);
-            }
+           
+            
         }
     }
 

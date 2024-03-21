@@ -30,6 +30,7 @@ offset_right = -49.744
 offset_bottom = -132.504
 
 [node name="Level" parent="." groups=["level"] instance=ExtResource("1_xt0rt")]
+process_mode = 1
 
 [node name="Player" parent="Level" groups=["player"] instance=ExtResource("1_k8am7")]
 process_mode = 1

@@ -48,7 +48,7 @@ public partial class player : CharacterBody2D
 
     public void OnLivesDepleted()
     {
-        QueueFree();
+        //QueueFree();
     }
 
     public void OnLifeLost()
