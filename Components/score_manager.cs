@@ -115,5 +115,8 @@ public partial class score_manager : Node
 
 	}
 
-
+	public void OnGameOver()
+	{
+		score = 0;
+	}
 }

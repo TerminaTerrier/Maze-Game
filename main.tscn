@@ -60,6 +60,7 @@ attackScoreTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="Score_Manager"]
 
+[connection signal="GameOver" from="." to="Score_Manager" method="OnGameOver"]
 [connection signal="EnemyDefeat" from="SignalBus" to="." method="OnEnemyDefeat"]
 [connection signal="LevelClear" from="SignalBus" to="." method="OnLevelClear"]
 [connection signal="LifeLost" from="SignalBus" to="." method="OnLifeLost"]
