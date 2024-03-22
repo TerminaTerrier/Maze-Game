@@ -4,9 +4,10 @@ using System;
 public partial class sceneloader : Node
 {
 	game_manager gameManager;
+	game_over_screen gameOverScreen;
 	Node2D Main;
 	boot Boot;
-
+	public Control failscreenInstance;
 	public Node2D mainInstance;
 
 	playerdata Playerdata;
@@ -35,14 +36,37 @@ public partial class sceneloader : Node
 
 		gameManager = (game_manager)mainInstance;
 		gameManager.LoadScene += ReloadMain;
+		gameManager.GameOver += OnGameOver;
 		Main = mainInstance;
+		
 	}
 
 	public void ReloadMain()
 	{
 
-		Main.QueueFree();
+		failscreenInstance.QueueFree();
 
 		LoadMain();
+	}
+
+	public void OnGameOver()
+	{
+		Main.QueueFree();
+
+		var scene = GD.Load<PackedScene>("res://UI/game_over_screen.tscn");
+		failscreenInstance = (Control)scene.Instantiate();
+		gameOverScreen = (game_over_screen)failscreenInstance;
+		CallDeferred("add_child", failscreenInstance);
+		gameOverScreen.Retry += ReloadMain;
+	}
+
+	private void DeleteScenes(string scene)
+	{
+		switch(scene)
+			{
+				case "Main":
+				Main.QueueFree();
+				break;
+			}
 	}
 }

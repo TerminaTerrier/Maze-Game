@@ -21,4 +21,6 @@ public partial class livesdisplay : Label
 		Text = "Lives: " + lives;
 		
 	}
+
+	//add an OnLifeGain signal when I implement that fuctionality
 }

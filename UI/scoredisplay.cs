@@ -14,4 +14,6 @@ public partial class scoredisplay : Label
 	{
 		Text = "Score: " + score;
 	}
+
+	
 }

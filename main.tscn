@@ -5,13 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://cuomd3fonk4k4" path="res://Level/level.tscn" id="1_xt0rt"]
 [ext_resource type="Script" path="res://game_manager.cs" id="1_ykqou"]
 [ext_resource type="PackedScene" uid="uid://dxhk6qe87huyt" path="res://Components/signal_bus.tscn" id="2_o6aqh"]
-[ext_resource type="PackedScene" uid="uid://iwcnvegmewfx" path="res://hud.tscn" id="2_r4u0o"]
+[ext_resource type="PackedScene" uid="uid://iwcnvegmewfx" path="res://UI/hud.tscn" id="2_r4u0o"]
 [ext_resource type="PackedScene" uid="uid://nwghbxg72c7x" path="res://Enemy/Enemy_Green/enemy_green.tscn" id="3_01vv0"]
 [ext_resource type="PackedScene" uid="uid://cvybshk5bhrsc" path="res://Enemy/Enemy_Red/enemy_red.tscn" id="4_itok6"]
 [ext_resource type="PackedScene" uid="uid://bgtx72ka6a8wp" path="res://Enemy/Enemy_Blue/enemy_blue.tscn" id="5_njt0x"]
 [ext_resource type="PackedScene" uid="uid://dfqle63ujcwfh" path="res://Enemy/Enemy_Purple/enemy_purple.tscn" id="8_hwqd7"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("pauseTimer") groups=["main"]]
+process_mode = 3
 script = ExtResource("1_ykqou")
 pauseTimer = NodePath("Timer")
 
@@ -21,10 +22,9 @@ pauseTimer = NodePath("Timer")
 process_mode = 3
 one_shot = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_r4u0o")]
-anchors_preset = 15
+[node name="HUD" parent="UI" instance=ExtResource("2_r4u0o")]
 offset_left = 62.0
 offset_top = 12.0
 offset_right = -49.744

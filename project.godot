@@ -16,9 +16,9 @@ config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 
 [autoload]
 
-Sceneloader="*res://Scripts/sceneloader.cs"
-Playerdata="*res://Scripts/playerdata.cs"
-Savegame="*res://Scripts/savegame.cs"
+Sceneloader="*res://Interfaces & Autoloads/sceneloader.cs"
+Playerdata="*res://Interfaces & Autoloads/playerdata.cs"
+Savegame="*res://Interfaces & Autoloads/savegame.cs"
 
 [dotnet]
 
