@@ -4,7 +4,7 @@ using System;
 public partial class game_over_screen : Control
 {
 	[Signal]
-	public delegate void RetryEventHandler();
+	public delegate void RetryEventHandler(string scene);
 	public override void _Ready()
 	{
 		
@@ -12,6 +12,6 @@ public partial class game_over_screen : Control
 
 	public void _on_button_pressed()
 	{
-		EmitSignal(SignalName.Retry);
+		EmitSignal(SignalName.Retry, "GameOverScreen");
 	}
 }

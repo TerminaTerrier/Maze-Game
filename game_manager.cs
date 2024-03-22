@@ -4,7 +4,7 @@ using System;
 public partial class game_manager : Node2D
 {
 	[Signal]
-	public delegate void LoadSceneEventHandler();
+	public delegate void LoadSceneEventHandler(string scene);
 	[Signal]
 	public delegate void GameOverEventHandler();
 	[Export]
@@ -21,7 +21,9 @@ public partial class game_manager : Node2D
 
 	public void OnLevelClear()
 	{
-		EmitSignal(SignalName.LoadScene);
+		GetTree().Paused = true;
+		EmitSignal(SignalName.LoadScene, "Main");
+		GetTree().Paused = false;
 	}
 
 	public void OnEnemyDefeat()

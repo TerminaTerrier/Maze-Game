@@ -55,6 +55,7 @@ z_index = 2
 position = Vector2(601, 262)
 
 [node name="Score_Manager" parent="." node_paths=PackedStringArray("attackScoreTimer") instance=ExtResource("1_bxxi7")]
+process_mode = 3
 attackScoreTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="Score_Manager"]
