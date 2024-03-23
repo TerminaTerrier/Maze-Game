@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://dfqle63ujcwfh"]
 
-[ext_resource type="Texture2D" uid="uid://b6esj5odksqlu" path="res://assets/2 - Bumpy the Robot/Running (16 x 16).png" id="1_80avt"]
 [ext_resource type="Script" path="res://Enemy/Enemy_Purple/enemy_purple.cs" id="1_wcc7u"]
 [ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="2_dtv1c"]
+[ext_resource type="Texture2D" uid="uid://b6esj5odksqlu" path="res://assets/Art/2 - Bumpy the Robot/Running (16 x 16).png" id="2_l442x"]
 [ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="3_rno5t"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="4_hapst"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ScatterState.cs" id="5_8sbmo"]
@@ -10,27 +10,27 @@
 [ext_resource type="Script" path="res://Components/State Machine & States/RetreatState.cs" id="7_nnjhg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aj0cp"]
-atlas = ExtResource("1_80avt")
+atlas = ExtResource("2_l442x")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_st737"]
-atlas = ExtResource("1_80avt")
+atlas = ExtResource("2_l442x")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1k1yy"]
-atlas = ExtResource("1_80avt")
+atlas = ExtResource("2_l442x")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2h4wr"]
-atlas = ExtResource("1_80avt")
+atlas = ExtResource("2_l442x")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_me28x"]
-atlas = ExtResource("1_80avt")
+atlas = ExtResource("2_l442x")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tccfq"]
-atlas = ExtResource("1_80avt")
+atlas = ExtResource("2_l442x")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ajug5"]

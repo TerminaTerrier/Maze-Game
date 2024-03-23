@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://nwghbxg72c7x"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy_Green/enemy_green.cs" id="1_gif0h"]
-[ext_resource type="Texture2D" uid="uid://dyinihdu2sfl3" path="res://assets/12 - Pokey Bub/Running (16 x 16).png" id="2_3dlx3"]
+[ext_resource type="Texture2D" uid="uid://dyinihdu2sfl3" path="res://assets/Art/12 - Pokey Bub/Running (16 x 16).png" id="2_3dlx3"]
 [ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="3_tts3t"]
 [ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="4_g36pb"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="5_kqd6o"]

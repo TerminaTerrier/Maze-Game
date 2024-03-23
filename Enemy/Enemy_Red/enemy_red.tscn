@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://cvybshk5bhrsc"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy_Red/enemy_red.cs" id="1_2lulb"]
-[ext_resource type="Texture2D" uid="uid://8pgnbknxgqw5" path="res://assets/11 - Spikey Bub/Idle (16 x 16).png" id="1_xi6yi"]
 [ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="2_5kxce"]
+[ext_resource type="Texture2D" uid="uid://8pgnbknxgqw5" path="res://assets/Art/11 - Spikey Bub/Idle (16 x 16).png" id="2_c3gam"]
 [ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="3_dtxxt"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="4_ohrml"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ScatterState.cs" id="5_gu702"]
@@ -10,11 +10,11 @@
 [ext_resource type="Script" path="res://Components/State Machine & States/RetreatState.cs" id="7_17cv1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6xfyy"]
-atlas = ExtResource("1_xi6yi")
+atlas = ExtResource("2_c3gam")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owt8g"]
-atlas = ExtResource("1_xi6yi")
+atlas = ExtResource("2_c3gam")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_071t3"]

@@ -49,7 +49,7 @@ public partial class game_manager : Node2D
 		GetTree().Paused = true;
 		EmitSignal(SignalName.GameOver);
 		GetTree().Paused = false;
-
+		
 
 	}
 
