@@ -16,12 +16,16 @@ public partial class playerdata : Node
       //Boot = GetNode<boot>("/root/boot");  
       //Boot.Boot +=  OnBoot;
       //GD.Print(Sceneloader == null);
+
+      ProcessMode = Node.ProcessModeEnum.Pausable;
+      GetTree().Paused = true;
     }
     
     public void OnBoot(Node2D main)
     {
       //Main = GetNode<game_manager>("/root/Sceneloader/Main");
       //Player = GetNode<CharacterBody2D>("/root/Sceneloader/Main/Level/Player");
+      GetTree().Paused = false;
       Level = main.GetNode<Node>("Level");
       Player = Level.GetNode<Node2D>("Player");
 
