@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://nwghbxg72c7x"]
+[gd_scene load_steps=25 format=3 uid="uid://nwghbxg72c7x"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy_Green/enemy_green.cs" id="1_gif0h"]
 [ext_resource type="Texture2D" uid="uid://dyinihdu2sfl3" path="res://assets/Art/12 - Pokey Bub/Running (16 x 16).png" id="2_3dlx3"]
+[ext_resource type="Texture2D" uid="uid://cstg66rstgh2d" path="res://assets/Art/12 - Pokey Bub/RunningAlternate (16 x 16).png" id="3_l54ie"]
 [ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="3_tts3t"]
 [ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="4_g36pb"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="5_kqd6o"]
@@ -33,6 +34,30 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("2_3dlx3")
 region = Rect2(80, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5owt"]
+atlas = ExtResource("3_l54ie")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7lrl"]
+atlas = ExtResource("3_l54ie")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr27i"]
+atlas = ExtResource("3_l54ie")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miuc2"]
+atlas = ExtResource("3_l54ie")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmn5y"]
+atlas = ExtResource("3_l54ie")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxp4m"]
+atlas = ExtResource("3_l54ie")
+region = Rect2(80, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7dy6j"]
 animations = [{
 "frames": [{
@@ -55,7 +80,30 @@ animations = [{
 "texture": SubResource("AtlasTexture_g1e7w")
 }],
 "loop": true,
-"name": &"MoveCycle",
+"name": &"MoveCycleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5owt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7lrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr27i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miuc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmn5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxp4m")
+}],
+"loop": true,
+"name": &"MoveCycleRight",
 "speed": 5.0
 }]
 
@@ -65,7 +113,7 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_1o7j5"]
 radius = 9.0
 
-[node name="Enemy_Green" type="CharacterBody2D"]
+[node name="Enemy_Green" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite", "chaseState")]
 z_index = 1
 position = Vector2(495, 218)
 collision_layer = 4
@@ -73,14 +121,16 @@ collision_mask = 71
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_gif0h")
+animatedSprite = NodePath("AnimatedSprite2D")
+chaseState = NodePath("StateMachine/Chase")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2.98023e-06, 0.999999)
 scale = Vector2(1.25, 1.1875)
 sprite_frames = SubResource("SpriteFrames_7dy6j")
-animation = &"MoveCycle"
+animation = &"MoveCycleRight"
 frame = 2
-frame_progress = 0.985297
+frame_progress = 0.697535
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

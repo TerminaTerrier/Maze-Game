@@ -5,7 +5,11 @@ public partial class enemy_green : CharacterBody2D
 {
     [Export]
     public float gEnemySpeed { get; set;  } = 2f;
+    [Export]
+    AnimatedSprite2D animatedSprite;
     StateMachine stateMachine;
+    [Export]
+    ChaseState chaseState;
     signalbus SignalBus;
 
     public override void _Ready()
@@ -15,7 +19,6 @@ public partial class enemy_green : CharacterBody2D
         SignalBus.LifeLost += OnLifeLost;
         stateMachine = GetNode<StateMachine>("StateMachine");
         GD.Print(Position);
-      
     }
     
     public void OnLifeLost()
@@ -23,5 +26,38 @@ public partial class enemy_green : CharacterBody2D
         Vector2 spawn = new Vector2(538, 262);
         Position = spawn;
         stateMachine.TransitionTo("Idle");
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        AnimationController();
+    }
+
+    public void AnimationController()
+    {
+        var direction = chaseState.dir;
+
+        switch(direction)
+        {
+            case Vector2(0,-1):
+            //up
+            animatedSprite.Play(animatedSprite.Animation);
+            break;
+            case Vector2(0,1):
+            //down
+            animatedSprite.Play(animatedSprite.Animation);
+            break;
+            case Vector2(-1,0):
+            //left
+            animatedSprite.Play("MoveCycleLeft");
+            break;
+            case Vector2(1,0):
+            //right
+            animatedSprite.Play("MoveCycleRight");
+            break;
+
+        }
+        
+      
     }
 }

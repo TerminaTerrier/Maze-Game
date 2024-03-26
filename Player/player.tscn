@@ -1,15 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://cufgy64ohch65"]
+[gd_scene load_steps=22 format=3 uid="uid://cufgy64ohch65"]
 
 [ext_resource type="Script" path="res://Player/player.cs" id="1_sf13e"]
 [ext_resource type="Script" path="res://Player/health.cs" id="2_cf7n7"]
 [ext_resource type="Script" path="res://Player/playeraudioplayer.cs" id="2_xahks"]
 [ext_resource type="Texture2D" uid="uid://bjt3tv0n721fh" path="res://assets/Art/6 - Rolling Nero/Rolling (16 x 16).png" id="3_oevp0"]
+[ext_resource type="Texture2D" uid="uid://b6q7ayx0s0mg2" path="res://assets/Art/6 - Rolling Nero/RollingAlternate (16 x 16).png" id="5_v4pln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ugxnw"]
-radius = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpylb"]
 atlas = ExtResource("3_oevp0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycmq4"]
+atlas = ExtResource("5_v4pln")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lf7ff"]
@@ -32,6 +36,30 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("3_oevp0")
 region = Rect2(80, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvs24"]
+atlas = ExtResource("5_v4pln")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2csr0"]
+atlas = ExtResource("5_v4pln")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rtxp"]
+atlas = ExtResource("5_v4pln")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0oqg5"]
+atlas = ExtResource("5_v4pln")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1dp7"]
+atlas = ExtResource("5_v4pln")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu5qg"]
+atlas = ExtResource("5_v4pln")
+region = Rect2(80, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_rbr8v"]
 animations = [{
 "frames": [{
@@ -39,7 +67,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_tpylb")
 }],
 "loop": true,
-"name": &"Default",
+"name": &"IdleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycmq4")
+}],
+"loop": true,
+"name": &"IdleRight",
 "speed": 5.0
 }, {
 "frames": [{
@@ -62,7 +98,30 @@ animations = [{
 "texture": SubResource("AtlasTexture_wcrhh")
 }],
 "loop": true,
-"name": &"MoveCycle",
+"name": &"MoveCycleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvs24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2csr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rtxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0oqg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1dp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu5qg")
+}],
+"loop": true,
+"name": &"MoveCycleRight",
 "speed": 5.0
 }]
 
@@ -99,7 +158,7 @@ shape = SubResource("CircleShape2D_ugxnw")
 position = Vector2(0, -1)
 scale = Vector2(1.0625, 1.0625)
 sprite_frames = SubResource("SpriteFrames_rbr8v")
-animation = &"MoveCycle"
+animation = &"MoveCycleRight"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -115,4 +174,5 @@ position = Vector2(5, 4)
 target_position = Vector2(0, 15)
 
 [connection signal="timeout" from="HealthComponent/Timer" to="HealthComponent" method="_on_timer_timeout"]
+[connection signal="body_entered" from="HealthComponent/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="HealthComponent/Area2D" to="HealthComponent" method="_on_area_2d_body_entered"]

@@ -20,7 +20,6 @@ public partial class player : CharacterBody2D
 
     [Export]
     Area2D area2D;
-
     signalbus SignalBus;
 
     public enum Direction
@@ -199,19 +198,19 @@ public partial class player : CharacterBody2D
         {
             case Direction.Left:
                 directionVec = new Vector2(-1, 0);
-                animatedSprite.Play("MoveCycle");
+                animationController("MoveCycleLeft", "Left");
                 break;
             case Direction.Right:
                 directionVec = new Vector2(1, 0);
-                animatedSprite.Play("MoveCycle");
+                animationController("MoveCycleRight", "Right");
                 break;
             case Direction.Up:
                 directionVec = new Vector2(0, -1);
-                animatedSprite.Play("MoveCycle");
+                animationController("", "Up");
                 break;
             case Direction.Down:
                 directionVec = new Vector2(0, 1);
-                animatedSprite.Play("MoveCycle");
+                animationController("", "Down");
                 break;
         }
 
@@ -220,8 +219,38 @@ public partial class player : CharacterBody2D
         Velocity = velocity;
 
         MoveAndSlide();
+
+
+      
     }
 
+    public void animationController(string animation, string direction)
+    {
+        if(animation != "Idle")
+        {
+          if(direction == "Left" || direction == "Right")
+            {
+                animatedSprite.Play(animation);
+            }
+            else if(direction == "Up" || direction == "Down")
+            {
+            animatedSprite.Play(animatedSprite.Animation);
+            }
+        }
+   
+        if(animation == "Idle")
+        {
+            currentDirection = Direction.Still;
+            animatedSprite.Pause();
+        }
+
+    }
     
-    
+    public void _on_area_2d_body_entered(Node2D body)
+    {
+        if(body is TileMap)
+        {
+           animationController("Idle", "");
+        }
+    }
 } 
