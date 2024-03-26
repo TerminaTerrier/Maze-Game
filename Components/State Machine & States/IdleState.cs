@@ -7,7 +7,7 @@ using System.Diagnostics;
 public partial class IdleState : Node, IState
 {
     public StateMachine fsm { get; set; }
-    public Vector2 dir{ get; set;}
+    public Vector2 dirEstimate{ get; set;}
     [Export]
     public Timer timer;
     [Export]

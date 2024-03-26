@@ -5,7 +5,7 @@ public interface IState
 {
 	public StateMachine fsm { get; set;} 
 	
-	public Vector2 dir { get; set; }
+	public Vector2 dirEstimate { get; set; }
 
 	public void Enter();
 	public void Exit();

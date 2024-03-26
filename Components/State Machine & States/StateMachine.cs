@@ -46,7 +46,7 @@ public partial class StateMachine : Node
     public override void _PhysicsProcess(double delta)
     {
 		currentState.PhysicsUpdate((float)delta);
-		direction = currentState.dir;
+		direction = currentState.dirEstimate;
 	}
 
 	public void TransitionTo(string key)

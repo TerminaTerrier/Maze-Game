@@ -17,6 +17,7 @@ public partial class enemy_green : CharacterBody2D
         SignalBus.LifeLost += OnLifeLost;
         stateMachine = GetNode<StateMachine>("StateMachine");
         GD.Print(Position);
+        animatedSprite.Play("MoveCycleLeft");
     }
     
     public void OnLifeLost()
@@ -31,10 +32,10 @@ public partial class enemy_green : CharacterBody2D
         AnimationController();
     }
 
-    public void AnimationController()
+    private void AnimationController()
     {
         var direction = stateMachine.direction;
-
+        GD.Print(direction);
         switch(direction)
         {
             case Vector2(0,-1):

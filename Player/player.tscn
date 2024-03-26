@@ -159,6 +159,7 @@ position = Vector2(0, -1)
 scale = Vector2(1.0625, 1.0625)
 sprite_frames = SubResource("SpriteFrames_rbr8v")
 animation = &"MoveCycleRight"
+speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)

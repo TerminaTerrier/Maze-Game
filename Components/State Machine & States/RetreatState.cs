@@ -4,7 +4,7 @@ using System;
 public partial class RetreatState : Node, IState
 {
     public StateMachine fsm { get; set; }
-    public Vector2 dir{ get; set;}
+    public Vector2 dirEstimate{ get; set;}
     [Export]
     CharacterBody2D enemy;
     [Export]
@@ -103,11 +103,20 @@ public partial class RetreatState : Node, IState
 
         enemy.MoveAndSlide();
 
-        GD.Print(dir);
-        GD.Print(navAgent.IsTargetReachable());
-        GD.Print(navAgent.IsTargetReached());
-        GD.Print(navAgent.TargetPosition);
-        GD.Print(navAgent.GetFinalPosition());
+
+        float X = dir.X;  
+        float Y = dir.Y;
+
+       float X2 = (float)Math.Round(X, MidpointRounding.AwayFromZero);
+       float Y2 = (float)Math.Round(Y, MidpointRounding.AwayFromZero);
+
+        dirEstimate = new Vector2(X2, Y2);
+
+       // GD.Print(dir);
+       // GD.Print(navAgent.IsTargetReachable());
+       // GD.Print(navAgent.IsTargetReached());
+        //GD.Print(navAgent.TargetPosition);
+     //   GD.Print(navAgent.GetFinalPosition());
     }
 
     public void _on_timer_timeout()

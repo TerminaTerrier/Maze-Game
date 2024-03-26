@@ -7,7 +7,7 @@ public partial class ChaseState : Node, IState
 {
     
     public StateMachine fsm { get; set; }
-    public Vector2 dir {get; set;}
+    public Vector2 dirEstimate {get; set;}
     Vector2 playerPos;
     [Export]
     CharacterBody2D enemy;
@@ -116,7 +116,7 @@ public partial class ChaseState : Node, IState
 
     public void PhysicsUpdate(float delta)
     {
-        dir = enemy.ToLocal(navAgent.GetNextPathPosition()).Normalized();
+        Vector2 dir = enemy.ToLocal(navAgent.GetNextPathPosition()).Normalized();
 
         Vector2 velocity = enemy.Velocity;
         velocity = dir * enemySpeed;
@@ -124,6 +124,15 @@ public partial class ChaseState : Node, IState
 
         enemy.MoveAndSlide();
 
+        float X = dir.X;  
+        float Y = dir.Y;
+
+       float X2 = (float)Math.Round(X, MidpointRounding.AwayFromZero);
+       float Y2 = (float)Math.Round(Y, MidpointRounding.AwayFromZero);
+
+        dirEstimate = new Vector2(X2, Y2);
+
+       // GD.Print(dirEstimate); 
         
          
         //GD.Print(navAgent.IsTargetReachable());

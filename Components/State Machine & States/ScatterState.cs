@@ -5,7 +5,7 @@ using System;
 public partial class ScatterState : Node, IState
 {
     public StateMachine fsm { get; set; }
-     public Vector2 dir {get; set;}
+     public Vector2 dirEstimate {get; set;}
     [Export]
     CharacterBody2D enemy;
     [Export]
@@ -44,13 +44,22 @@ public partial class ScatterState : Node, IState
 
     public void PhysicsUpdate(float delta)
     {
-        dir = enemy.ToLocal(navAgent.GetNextPathPosition()).Normalized();
+        Vector2 dir = enemy.ToLocal(navAgent.GetNextPathPosition()).Normalized();
 
         Vector2 velocity = enemy.Velocity;
         velocity = dir * enemySpeed;
         enemy.Velocity = velocity;
 
         enemy.MoveAndSlide();
+
+
+        float X = dir.X;  
+        float Y = dir.Y;
+
+        float X2 = (float)Math.Round(X, MidpointRounding.AwayFromZero);
+        float Y2 = (float)Math.Round(Y, MidpointRounding.AwayFromZero);
+
+        dirEstimate = new Vector2(X2, Y2);
 
        // GD.Print(navAgent.IsTargetReachable());
      //   GD.Print(dir);
