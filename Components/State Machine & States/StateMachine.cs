@@ -9,6 +9,7 @@ public partial class StateMachine : Node
 	private Dictionary<string, IState> states = new Dictionary<string, IState>();
 	private IState currentState;
 	public string currentStateKey{get; set;}
+	public Vector2 direction {get; set;}
 
 	signalbus SignalBus;
 	public override void _Ready()
@@ -45,6 +46,7 @@ public partial class StateMachine : Node
     public override void _PhysicsProcess(double delta)
     {
 		currentState.PhysicsUpdate((float)delta);
+		direction = currentState.dir;
 	}
 
 	public void TransitionTo(string key)

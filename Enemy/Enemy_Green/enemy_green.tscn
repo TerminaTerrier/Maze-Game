@@ -113,7 +113,7 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_1o7j5"]
 radius = 9.0
 
-[node name="Enemy_Green" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite", "chaseState")]
+[node name="Enemy_Green" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite", "chaseState", "scatterState", "frightenedState")]
 z_index = 1
 position = Vector2(495, 218)
 collision_layer = 4
@@ -123,6 +123,8 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_gif0h")
 animatedSprite = NodePath("AnimatedSprite2D")
 chaseState = NodePath("StateMachine/Chase")
+scatterState = NodePath("StateMachine/Scatter")
+frightenedState = NodePath("StateMachine/Frightened")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2.98023e-06, 0.999999)

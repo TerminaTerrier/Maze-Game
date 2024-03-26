@@ -6,6 +6,7 @@ using System.Reflection.Emit;
 public partial class FrightenedState : Node, IState
 {
     public StateMachine fsm { get; set; }
+    public Vector2 dir {get; set;}
     [Export]
     CharacterBody2D enemy;
     [Export]
@@ -20,6 +21,7 @@ public partial class FrightenedState : Node, IState
     float timerNum;
     
     string stateKey;
+    
     signalbus SignalBus;
 
     public void Start()
@@ -53,7 +55,7 @@ public partial class FrightenedState : Node, IState
 
     public void PhysicsUpdate(float delta)
     {
-        var dir = enemy.ToLocal(navAgent.GetNextPathPosition()).Normalized();
+        dir = enemy.ToLocal(navAgent.GetNextPathPosition()).Normalized();
 
         Vector2 velocity = enemy.Velocity;
         velocity = dir * enemySpeed;

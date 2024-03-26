@@ -8,8 +8,6 @@ public partial class enemy_green : CharacterBody2D
     [Export]
     AnimatedSprite2D animatedSprite;
     StateMachine stateMachine;
-    [Export]
-    ChaseState chaseState;
     signalbus SignalBus;
 
     public override void _Ready()
@@ -35,7 +33,7 @@ public partial class enemy_green : CharacterBody2D
 
     public void AnimationController()
     {
-        var direction = chaseState.dir;
+        var direction = stateMachine.direction;
 
         switch(direction)
         {

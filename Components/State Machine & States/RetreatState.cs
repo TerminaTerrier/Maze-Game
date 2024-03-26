@@ -4,6 +4,7 @@ using System;
 public partial class RetreatState : Node, IState
 {
     public StateMachine fsm { get; set; }
+    public Vector2 dir{ get; set;}
     [Export]
     CharacterBody2D enemy;
     [Export]

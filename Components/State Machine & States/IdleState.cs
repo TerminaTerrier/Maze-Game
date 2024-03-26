@@ -7,6 +7,7 @@ using System.Diagnostics;
 public partial class IdleState : Node, IState
 {
     public StateMachine fsm { get; set; }
+    public Vector2 dir{ get; set;}
     [Export]
     public Timer timer;
     [Export]
@@ -15,6 +16,7 @@ public partial class IdleState : Node, IState
     float timerNum;
     Vector2 move = new Vector2(0, 1);
     string enemyName;
+    
     signalbus SignalBus;
 
     public void Start()
