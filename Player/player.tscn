@@ -169,10 +169,12 @@ shape = SubResource("CircleShape2D_t8phy")
 [node name="RayCast2D_1" type="RayCast2D" parent="."]
 position = Vector2(-5, 4)
 target_position = Vector2(0, 15)
+collision_mask = 65
 
 [node name="RayCast2D_2" type="RayCast2D" parent="."]
 position = Vector2(5, 4)
 target_position = Vector2(0, 15)
+collision_mask = 65
 
 [connection signal="timeout" from="HealthComponent/Timer" to="HealthComponent" method="_on_timer_timeout"]
 [connection signal="body_entered" from="HealthComponent/Area2D" to="." method="_on_area_2d_body_entered"]
