@@ -4,7 +4,7 @@ using System;
 public partial class start_menu : Control
 {
 	[Signal]
-	public delegate void GameStartEventHandler();
+	public delegate void GameStartEventHandler(string scene);
 	public override void _Ready()
 	{
 
@@ -12,6 +12,6 @@ public partial class start_menu : Control
 
 	public void _on_button_pressed()
 	{
-		EmitSignal(SignalName.GameStart);
+		EmitSignal(SignalName.GameStart, "StartMenu");
 	}
 }

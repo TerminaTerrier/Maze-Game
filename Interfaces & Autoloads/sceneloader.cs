@@ -45,7 +45,7 @@ public partial class sceneloader : Node
 
 
 	}
-	public void LoadMain()
+	public void LoadMain(string scene)
 	{
 		var scene1 = GD.Load<PackedScene>("res://main.tscn");
 		mainInstance = (Node2D)scene1.Instantiate();
@@ -56,10 +56,10 @@ public partial class sceneloader : Node
 		Playerdata.OnBoot(mainInstance);
 
 		gameManager = (game_manager)mainInstance;
-		gameManager.LoadScene += ReloadMain;
+		gameManager.LoadScene += LoadMain;
 		gameManager.GameOver += LoadGameOver;
 		
-		DeleteScenes("StartMenu");
+		DeleteScenes(scene);
 		
 	}
 
@@ -72,15 +72,10 @@ public partial class sceneloader : Node
 		
 		gameOverScreen = (game_over_screen)failscreenInstance;
 		CallDeferred("add_child", failscreenInstance);
-		gameOverScreen.Retry += ReloadMain;
+		gameOverScreen.Retry += LoadMain;
 	}
 
-	public void ReloadMain(string scene)
-	{
-		DeleteScenes(scene);
-		
-		LoadMain();
-	}
+	
 
 	private void DeleteScenes(string scene)
 	{
