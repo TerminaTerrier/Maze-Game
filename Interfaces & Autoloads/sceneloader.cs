@@ -47,6 +47,8 @@ public partial class sceneloader : Node
 	}
 	public void LoadMain(string scene)
 	{
+		DeleteScenes(scene);
+
 		var scene1 = GD.Load<PackedScene>("res://main.tscn");
 		mainInstance = (Node2D)scene1.Instantiate();
 
@@ -58,8 +60,6 @@ public partial class sceneloader : Node
 		gameManager = (game_manager)mainInstance;
 		gameManager.LoadScene += LoadMain;
 		gameManager.GameOver += LoadGameOver;
-		
-		DeleteScenes(scene);
 		
 	}
 
