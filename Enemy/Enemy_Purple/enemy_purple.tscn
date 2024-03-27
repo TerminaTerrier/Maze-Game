@@ -130,8 +130,12 @@ animation = &"MoveCycleLeft"
 shape = SubResource("CircleShape2D_43ucv")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 1.0
+target_desired_distance = 5.0
+path_max_distance = 300.0
 path_postprocessing = 1
 avoidance_enabled = true
+debug_enabled = true
 
 [node name="StateMachine" parent="." instance=ExtResource("2_dtv1c")]
 initialState = NodePath("Chase")

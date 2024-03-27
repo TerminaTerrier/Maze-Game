@@ -50,7 +50,7 @@ position = Vector2(568, 264)
 
 [node name="Enemy_Purple" parent="Level" instance=ExtResource("8_hwqd7")]
 z_index = 2
-position = Vector2(567, 214)
+position = Vector2(568, 455)
 
 [node name="Enemy_Green" parent="Level" groups=["Enemies"] instance=ExtResource("3_01vv0")]
 process_mode = 1

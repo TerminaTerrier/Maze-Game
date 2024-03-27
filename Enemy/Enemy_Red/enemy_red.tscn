@@ -132,8 +132,12 @@ position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_fqsmf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 1.0
+target_desired_distance = 3.0
+path_max_distance = 300.0
 path_postprocessing = 1
 avoidance_enabled = true
+debug_enabled = true
 
 [node name="StateMachine" parent="." instance=ExtResource("2_5kxce")]
 initialState = NodePath("Idle")
@@ -189,7 +193,7 @@ debug_color = Color(0.827451, 0.807843, 0.780392, 0.203922)
 
 [connection signal="timeout" from="StateMachine/Idle/Timer" to="StateMachine/Idle" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Chase/Timer" to="StateMachine/Chase" method="_on_timer_timeout"]
-[connection signal="timeout" from="StateMachine/Scatter/Timer" to="StateMachine/Chase" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Scatter/Timer" to="StateMachine/Scatter" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Frightened/Timer" to="StateMachine/Frightened" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Retreat/Timer" to="StateMachine/Retreat" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="StateMachine/Frightened" method="_on_area_2d_body_entered"]

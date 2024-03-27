@@ -16,29 +16,60 @@ public partial class ScatterState : Node, IState
     float timerNum;
     string enemyName;
     float enemySpeed;
-   
+    Vector2 currentTarget;
+    Vector2 greenTarget1 = new Vector2(280, 165);
+    Vector2 greenTarget2 = new Vector2(360, 230);
+    Vector2 redTarget1 = new Vector2(856, 166);
+    Vector2 redTarget2 = new Vector2(775, 231);
+    Vector2 purpleTarget1 = new Vector2(567, 169);
+    Vector2 purpleTarget2 = new Vector2(567, 455);
     signalbus SignalBus;
    
 
     public void Start()
     {
         enemyName = enemy.Name;
-       
         
         SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
+        SignalBus.ItemCollected += OnItemCollected;
+        navAgent.TargetReached += OnTargetReached;
     }
 
     public void Enter()
     {
-        timerNum = rng.RandfRange(5f, 10f);
+        timerNum = rng.RandfRange(7f, 14f);
         scatterTimer.Start(timerNum);
-        SignalBus.ItemCollected += OnItemCollected;
+        
+
+      
+
+    
+      if(enemyName == "Enemy_Green")
+        {
+            currentTarget = greenTarget1;
+            GetScatterTarget(currentTarget);
+        }
+      if(enemyName == "Enemy_Red")
+        {
+            currentTarget = redTarget1;
+            GetScatterTarget(currentTarget);
+        }  
+        if(enemyName == "Enemy_Purple")
+        {
+            currentTarget = purpleTarget1;
+            GetScatterTarget(currentTarget);
+        }   
       //  GD.Print("Scatter entered!");
     }
 
     public void Update(float delta)
     {
-        GetScatterTarget();
+        if(enemyName == "Enemy_Purple")
+        {
+            GD.Print(currentTarget);
+            GD.Print(navAgent.IsTargetReachable());
+        }
+        
       //  GD.Print("I am in Scatter");
     }
 
@@ -65,20 +96,20 @@ public partial class ScatterState : Node, IState
      //   GD.Print(dir);
     }
 
-    private void GetScatterTarget()
+    private void GetScatterTarget(Vector2 target)
     {
         switch (enemyName)
         {
             case "Enemy_Green":
-                navAgent.TargetPosition = Vector2.Zero;
+                navAgent.TargetPosition = currentTarget;
                 enemySpeed = 50f;
                 break;
             case "Enemy_Red":
-                navAgent.TargetPosition = new Vector2(920, 120);
+                navAgent.TargetPosition = currentTarget;
                 enemySpeed = 50f;
                 break;
             case "Enemy_Purple":
-                navAgent.TargetPosition = new Vector2(540, 225);
+                navAgent.TargetPosition = currentTarget;
                 enemySpeed = 50f;
                 break;
         }
@@ -97,8 +128,53 @@ public partial class ScatterState : Node, IState
         }
     }
 
-    public void Exit()
+    public void OnTargetReached()
     {
+     
+     if(fsm.currentStateKey == "Scatter")
+     {
+        if(enemyName == "Enemy_Green" && currentTarget == greenTarget1)
+        {
+            currentTarget = greenTarget2;
+            GetScatterTarget(currentTarget);
+        }
+        else if(enemyName == "Enemy_Green" && currentTarget == greenTarget2)
+        {
+            currentTarget = greenTarget1;
+            GetScatterTarget(currentTarget);
+        }
+        if(enemyName == "Enemy_Red" && currentTarget == redTarget1)
+        {
+            currentTarget = redTarget2;
+            GetScatterTarget(currentTarget);
+        } 
+        else if(enemyName == "Enemy_Red" && currentTarget == redTarget2)
+        {
+            currentTarget = redTarget1;
+            GetScatterTarget(currentTarget);
+        } 
+        if(enemyName == "Enemy_Purple" && currentTarget == purpleTarget1)
+        {
+            GD.Print("change target1!");
+            currentTarget = purpleTarget2;
+            GetScatterTarget(currentTarget);
+        }   
+        else if(enemyName == "Enemy_Purple" && currentTarget == purpleTarget2)
+        {
+             GD.Print("change target2!");
+            currentTarget = purpleTarget1;
+            GetScatterTarget(currentTarget);
+        }
+     }
+     else
+     {
+        return;
+     }
+    }
+
+    public void Exit()
+    {   
+        //currentTarget = Vector2.Zero;
         scatterTimer.Stop();
     }
 }

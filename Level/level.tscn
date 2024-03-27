@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cuomd3fonk4k4"]
+[gd_scene load_steps=17 format=3 uid="uid://cuomd3fonk4k4"]
 
 [ext_resource type="Script" path="res://Level/levelmanager.cs" id="1_a8oe5"]
 [ext_resource type="Texture2D" uid="uid://ddqu5ivlhu2ri" path="res://assets/Art/Tiles_pack/Tileset_6.png" id="2_qxpha"]
@@ -331,6 +331,13 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 0.0
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4q16o"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pg55m"]
 texture = ExtResource("3_m01es")
 0:0/0 = 0
@@ -465,6 +472,7 @@ texture = ExtResource("3_m01es")
 4:3/0/physics_layer_0/angular_velocity = 0.0
 4:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 4:3/0/physics_layer_1/angular_velocity = 0.0
+4:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4q16o")
 3:3/0 = 0
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_0/angular_velocity = 0.0
