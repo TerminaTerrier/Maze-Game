@@ -3,7 +3,7 @@ using System;
 
 public partial class livesdisplay : Label
 {
-	int lives;
+	static int lives = 2;
 	signalbus Signalbus;
 	public override void _Ready()
 	{
@@ -11,21 +11,27 @@ public partial class livesdisplay : Label
 		Signalbus.LifeLost += OnLifeLost;
 		Signalbus.LifeGain += OnLifeGain; 
 
-		lives = 2;
 		Text = "Lives: " + lives;
 	}
 
 	public void OnLifeLost()
 	{
-		lives--;
-		Text = "Lives: " + lives;
+		
+		if(lives >= 0)
+		{
+			Text = "Lives: " + lives;
+			lives--;
+		}
 		
 	}
 
 	public void OnLifeGain()
 	{
-		lives++;
-		Text = "Lives: " + lives;
+		if(lives <= 5)
+		{
+			lives++;
+			Text = "Lives: " + lives;
+		}
 		
 	}
 

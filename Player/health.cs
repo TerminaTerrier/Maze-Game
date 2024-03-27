@@ -10,7 +10,8 @@ public partial class health : Node2D
     signalbus SignalBus;
     string enemyState;
 
-    int scoreBase = 1000;
+    int scoreBase;
+    static int scoreIncrement = 1;
 
     public override void _Ready()
     {
@@ -20,6 +21,8 @@ public partial class health : Node2D
 
         Score_Manager = GetNode<score_manager>("/root/Sceneloader/Main/Score_Manager");
         Score_Manager.ScoreChange += OnScoreChange; 
+
+        scoreBase = 1000;
     }
 
 
@@ -65,12 +68,13 @@ public partial class health : Node2D
 
     public void OnScoreChange(int score)
     {  
-        if(score == scoreBase && lives < maxLives && lives >= 0 )
+        
+        if(score >= scoreBase * scoreIncrement && lives < maxLives && lives >= 0 )
         {
+            scoreIncrement++;
             lives++;
             SignalBus.EmitSignal(signalbus.SignalName.LifeGain);
             GD.Print(lives);
-            scoreBase = scoreBase + 1000;
         }
     }
 }
