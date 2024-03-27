@@ -28,7 +28,7 @@ public partial class enemy_purple : CharacterBody2D
 	private void AnimationController()
     {
         var direction = stateMachine.direction;
-		GD.Print(direction);
+		//GD.Print(direction);
         switch(direction)
         {
             case Vector2(0,-1):

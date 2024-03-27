@@ -6,6 +6,8 @@ public partial class signalbus : Node
 	[Signal]
 	public delegate void LifeLostEventHandler();
 	[Signal]
+	public delegate void LifeGainEventHandler();
+	[Signal]
 	public delegate void LivesDepletedEventHandler();
 	[Signal]
 	public delegate void ItemCollectedEventHandler(StringName collectable);

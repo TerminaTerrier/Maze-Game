@@ -4,17 +4,22 @@ using System.Reflection.Metadata;
 
 public partial class health : Node2D
 {
-
+    score_manager Score_Manager;
     public const int maxLives = 5;
     public static int lives;
     signalbus SignalBus;
     string enemyState;
+
+    int scoreBase = 1000;
 
     public override void _Ready()
     {
         lives = 2;
         SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
         SignalBus.StateChange += OnStateChange;
+
+        Score_Manager = GetNode<score_manager>("/root/Sceneloader/Main/Score_Manager");
+        Score_Manager.ScoreChange += OnScoreChange; 
     }
 
 
@@ -29,6 +34,7 @@ public partial class health : Node2D
             {
                 lives--;
                 SignalBus.EmitSignal(signalbus.SignalName.LivesDepleted);
+                scoreBase = 1000;
             }
 
             if (lives > 0 && lives <= maxLives && enemyState != "Frightened" && enemyState != "Retreat" && enemyName != "Enemy_Blue")
@@ -51,18 +57,20 @@ public partial class health : Node2D
         }
     }
 
-    public void _on_timer_timeout()
-    {
-        int score = score_manager.score;
-
-        if (score == 5000 && lives <= maxLives && lives >= 0)
-        {
-            lives++;
-        }
-    }
 
     public void OnStateChange(string state)
     {
         enemyState = state;
+    }
+
+    public void OnScoreChange(int score)
+    {  
+        if(score == scoreBase && lives < maxLives && lives >= 0 )
+        {
+            lives++;
+            SignalBus.EmitSignal(signalbus.SignalName.LifeGain);
+            GD.Print(lives);
+            scoreBase = scoreBase + 1000;
+        }
     }
 }

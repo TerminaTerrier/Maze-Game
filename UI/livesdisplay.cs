@@ -9,7 +9,7 @@ public partial class livesdisplay : Label
 	{
 		Signalbus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
 		Signalbus.LifeLost += OnLifeLost;
-
+		Signalbus.LifeGain += OnLifeGain; 
 
 		lives = 2;
 		Text = "Lives: " + lives;
@@ -18,6 +18,13 @@ public partial class livesdisplay : Label
 	public void OnLifeLost()
 	{
 		lives--;
+		Text = "Lives: " + lives;
+		
+	}
+
+	public void OnLifeGain()
+	{
+		lives++;
 		Text = "Lives: " + lives;
 		
 	}
