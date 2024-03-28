@@ -31,7 +31,9 @@ public partial class StateMachine : Node
 		}
 		currentState = GetNode<IState>(initialState);
 		currentState.Enter();
-		currentStateKey = "Idle";
+
+		
+		
 
         
 

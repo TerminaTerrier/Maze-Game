@@ -33,6 +33,10 @@ public partial class IdleState : Node, IState
         SignalBus.ItemCollected += OnItemCollected;
         SignalBus.EmitSignal(signalbus.SignalName.StateChange, "Idle");
 
+        if(enemyName != "Enemy_Purple")
+        {
+        fsm.currentStateKey = "Idle";
+        }
         
     }
 
