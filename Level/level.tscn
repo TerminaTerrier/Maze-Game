@@ -570,7 +570,7 @@ layer_0/tile_data = PackedInt32Array(1179679, 262144, 3, 1179680, 262144, 3, 117
 script = ExtResource("4_at838")
 
 [node name="LevelWarpRight" type="Area2D" parent="."]
-collision_mask = 7
+collision_mask = 63
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelWarpRight"]
 position = Vector2(890, 312)

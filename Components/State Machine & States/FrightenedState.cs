@@ -121,10 +121,6 @@ public partial class FrightenedState : Node, IState
         //GD.Print(dir);
     }
 
-    public void GetIntersect()
-    {
-        
-    }
 
     public void _on_area_2d_body_entered(Node2D body)
     {
