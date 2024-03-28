@@ -90,7 +90,7 @@ public partial class IdleState : Node, IState
     {
         if (collectable == "power_up" && fsm.currentStateKey == "Idle" && enemyName != "Enemy_Blue")
         {
-            fsm.TransitionTo("Frightened");
+            return;
         }
         else if(collectable == "power_up" && fsm.currentStateKey == "Idle" && enemyName == "Enemy_Blue")
         {
