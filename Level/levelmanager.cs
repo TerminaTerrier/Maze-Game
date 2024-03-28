@@ -11,12 +11,16 @@ public partial class levelmanager : Node
 	[Export]
 	TileMap tilemap;
 	//using Godot's arrays here because C# arrrays and list were not compatible with the tilemap methods
-	Array<Vector2I> backgroundTiles;
-	Array<Vector2> backgroundTilesV2 = new Array<Vector2> { };
-	Array<Vector2I> specialTiles;
-	Array<Vector2> specialtilesV2 = new Array<Vector2> { };
+
+	Array<Vector2I> pelletTiles;
+	Array<Vector2> pelletTilesV2 = new Array<Vector2> { };
+	Array<Vector2I> powerTiles;
+	Array<Vector2> powerTilesV2 = new Array<Vector2> { };
+	Vector2I specialTile;
 	PackedScene pellet = GD.Load<PackedScene>("res://Collectables/pellet.tscn");
 	PackedScene powerUp = GD.Load<PackedScene>("res://Collectables/power_up.tscn");
+	PackedScene special = GD.Load<PackedScene>("res://Collectables/special_collectable.tscn");
+	int pelletBookmark = 395;
 	signalbus SignalBus;
 
 
@@ -25,8 +29,12 @@ public partial class levelmanager : Node
 	{
 		Vector2I atlasCoordPellets = new Vector2I(3, 1);
 		Vector2I atlasCoordPowerUp = new Vector2I(0, 3);
-		backgroundTiles = tilemap.GetUsedCellsById(0, 1, atlasCoordPellets);
-		specialTiles = tilemap.GetUsedCellsById(0, 1, atlasCoordPowerUp);
+		pelletTiles = tilemap.GetUsedCellsById(0, 1, atlasCoordPellets);
+		powerTiles = tilemap.GetUsedCellsById(0, 1, atlasCoordPowerUp);
+
+		specialTile = new Vector2I(568, 311);
+
+		
 
 		ConvertArray();
 		CreatePellets();
@@ -38,14 +46,14 @@ public partial class levelmanager : Node
 
 	private void ConvertArray()
 	{
-		foreach (var tile in backgroundTiles)
+		foreach (var tile in pelletTiles)
 		{
-			backgroundTilesV2.Add(tilemap.MapToLocal(tile));
+			pelletTilesV2.Add(tilemap.MapToLocal(tile));
 		}
 
-		foreach (var tile in specialTiles)
+		foreach (var tile in powerTiles)
 		{
-			specialtilesV2.Add(tilemap.MapToLocal(tile));
+			powerTilesV2.Add(tilemap.MapToLocal(tile));
 		}
 		//GD.Print(backgroundTilesV2);
 	}
@@ -54,7 +62,7 @@ public partial class levelmanager : Node
 	//need to prevent pellet from being instanced where the player spawns
 	private void CreatePellets()
 	{
-		foreach (var tile in backgroundTilesV2)
+		foreach (var tile in pelletTilesV2)
 		{
 			//GD.Print("hi!");
 			Node2D pelletInstance = (Node2D)pellet.Instantiate();
@@ -66,11 +74,12 @@ public partial class levelmanager : Node
 
 		}
 		GD.Print(pelletCount);
+		
 	}
 
 	private void CreatePowerUp()
 	{
-		foreach (var tile in specialtilesV2)
+		foreach (var tile in powerTilesV2)
 		{
 			Node2D powerUpInstance = (Node2D)powerUp.Instantiate();
 			powerUpInstance.Position = tile;
@@ -87,18 +96,33 @@ public partial class levelmanager : Node
 
 
 	}
-
+	
+	
+	
 	public void OnItemCollected(StringName collectable)
 	{
 		if(collectable == "pellet")
 		{
 			pelletCount--;
-			levelClearTracker();
+			SpecialTracker();
+			LevelClearTracker();
 		}
 		GD.Print(pelletCount);
 	}
 
-	public void levelClearTracker()
+	private void SpecialTracker()
+	{
+		if(pelletCount <= pelletBookmark - 70)
+		{
+			Node2D specialInstance = (Node2D)special.Instantiate();
+			specialInstance.Position = specialTile;
+			CallDeferred("add_child", specialInstance);
+			specialInstance.AddToGroup("Collectables");
+
+			pelletBookmark = pelletBookmark - 70;
+		}
+	}
+	public void LevelClearTracker()
 	{
 		if(pelletCount == 0)
 		{

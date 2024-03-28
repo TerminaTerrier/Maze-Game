@@ -53,10 +53,10 @@ public partial class ChaseState : Node, IState
         //GD.Print(playerdata.playerPosition);
         GetTargetPath();
         //GD.Print("I am in Chase");
-        if(enemyName == "Enemy_Purple")
-        {
-        GD.Print(fsm.currentStateKey);
-        }
+        //if(enemyName == "Enemy_Purple")
+      //  {
+       // GD.Print(fsm.currentStateKey);
+       // }
     }
 
     private void GetTargetPath()

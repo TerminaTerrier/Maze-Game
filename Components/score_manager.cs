@@ -68,6 +68,23 @@ public partial class score_manager : Node
 			score += 50;
 			HighScoreCheck();
 		}
+
+		if(collectable == "orangeSpecial")
+		{
+			score += 500;
+			HighScoreCheck();
+		}
+		if(collectable == "greenSpecial")
+		{
+			score += 1000;
+			HighScoreCheck();
+		}
+		if(collectable == "blueSpecial")
+		{
+			score += 2500;
+			HighScoreCheck();
+		}
+
 		EmitSignal(SignalName.ScoreChange, score);
 		//GD.Print(score);
 	}
@@ -86,7 +103,7 @@ public partial class score_manager : Node
 		
 		if(attackScoreTimer.IsStopped())
 		{
-			scoreMultiplier = 1;
+			scoreMultiplier = 1; 
 		}
 		EmitSignal(SignalName.ScoreChange, score);
 		HighScoreCheck();

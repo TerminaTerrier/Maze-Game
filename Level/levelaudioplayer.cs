@@ -5,6 +5,7 @@ public partial class levelaudioplayer : AudioStreamPlayer
 {
 	AudioStream collectSFX;
 	AudioStream powerUpSFX;
+	AudioStream specialSFX;
 	signalbus Signalbus;
 	
 	public override void _Ready()
@@ -14,6 +15,7 @@ public partial class levelaudioplayer : AudioStreamPlayer
 
 		powerUpSFX = GD.Load<AudioStream>("res://assets/Audio/PowerUp.wav");
 		collectSFX = GD.Load<AudioStream>("res://assets/Audio/Collect.wav");
+		specialSFX = GD.Load<AudioStream>("res://assets/Audio/Special.wav");
 	}
 
 	public void OnItemCollected(StringName item)
@@ -27,6 +29,11 @@ public partial class levelaudioplayer : AudioStreamPlayer
 		if(item == "power_up")
 		{
 			Stream = powerUpSFX;
+			Play();
+		}
+		if(item == "orangeSpecial" || item == "greenSpecial" || item == "blueSpecial")
+		{
+			Stream = specialSFX;
 			Play();
 		}
 	}
