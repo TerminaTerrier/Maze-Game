@@ -56,4 +56,5 @@ public partial class enemy_blue : CharacterBody2D
         
       
     }
+   
 }

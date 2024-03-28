@@ -11,6 +11,8 @@ public partial class enemy_red : CharacterBody2D
 	{
 		SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
         SignalBus.LifeLost += OnLifeLost;
+        SignalBus.LeftWarp += OnLeftWarp;
+        SignalBus.RightWarp += OnRightWarp;
 		stateMachine = GetNode<StateMachine>("StateMachine");
 		animatedSprite.Play("MoveCycleLeft");
 
@@ -55,5 +57,21 @@ public partial class enemy_red : CharacterBody2D
         }
         
       
+    }
+    public void OnLeftWarp(Node2D body)
+    {
+        if (body.Name == "Enemy_Red")
+        {
+            GlobalPosition = new Vector2(870, 312);
+        }    
+    }
+
+    public void OnRightWarp(Node2D body)
+    {
+        if(body.Name == "Enemy_Red")
+        {
+            GlobalPosition = new Vector2(273, 312);
+        }
+       
     }
 }

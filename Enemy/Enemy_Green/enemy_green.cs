@@ -15,6 +15,8 @@ public partial class enemy_green : CharacterBody2D
         SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
 
         SignalBus.LifeLost += OnLifeLost;
+        SignalBus.LeftWarp += OnLeftWarp;
+        SignalBus.RightWarp += OnRightWarp;
         stateMachine = GetNode<StateMachine>("StateMachine");
         GD.Print(Position);
         animatedSprite.Play("MoveCycleLeft");
@@ -30,6 +32,7 @@ public partial class enemy_green : CharacterBody2D
     public override void _PhysicsProcess(double delta)
     {
         AnimationController();
+        
     }
 
     private void AnimationController()
@@ -56,7 +59,23 @@ public partial class enemy_green : CharacterBody2D
             break;
 
         }
-        
-      
     }
+        public void OnLeftWarp(Node2D body)
+    {
+        if (body.Name == "Enemy_Green")
+        {
+            GlobalPosition = new Vector2(870, 312);
+        }    
+    }
+
+    public void OnRightWarp(Node2D body)
+    {
+        if(body.Name == "Enemy_Green")
+        {
+            GlobalPosition = new Vector2(273, 312);
+        }
+       
+    }
+      
+    
 }
