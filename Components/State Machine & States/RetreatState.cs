@@ -51,6 +51,10 @@ public partial class RetreatState : Node, IState
         enemy.SetCollisionMaskValue(5, false);
         enemy.SetCollisionMaskValue(5, false);
         break;
+        case "Enemy_Blue":
+        enemy.SetCollisionMaskValue(6, false);
+        enemy.SetCollisionMaskValue(6, false);
+        break;
         }
        
     }
@@ -156,6 +160,10 @@ public partial class RetreatState : Node, IState
         case "Enemy_Purple":
         enemy.SetCollisionMaskValue(5, true);
         enemy.SetCollisionMaskValue(5, true);
+        break;
+        case "Enemy_Blue":
+        enemy.SetCollisionMaskValue(6, true);
+        enemy.SetCollisionMaskValue(6, true);
         break;
         }
     }

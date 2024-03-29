@@ -49,7 +49,7 @@ public partial class health : Node2D
             
            
             
-            if(lives > 0 && lives <= maxLives && enemyName == "Enemy_Blue")
+            if(lives > 0 && lives <= maxLives && enemyName == "Enemy_Blue" && enemyState != "Retreat")
             {
                 lives--;
                 SignalBus.EmitSignal(signalbus.SignalName.LifeLost);
