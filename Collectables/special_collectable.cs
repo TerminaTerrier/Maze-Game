@@ -34,6 +34,10 @@ public partial class special_collectable : Node2D
 		}
 	}
 
+	public void OnLifeLost()
+	{
+		QueueFree();
+	}
 	public void _on_area_2d_body_entered(Node2D body)
 	{
 		if (body.Name == "Player")
@@ -62,8 +66,5 @@ public partial class special_collectable : Node2D
 		QueueFree();
 	}
 
-	public void OnLifeLost()
-	{
-		QueueFree();
-	}
+	
 }
