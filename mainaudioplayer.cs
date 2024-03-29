@@ -9,7 +9,7 @@ public partial class mainaudioplayer : AudioStreamPlayer
 	{
 		Signalbus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
 
-		gameMusic = GD.Load<AudioStream>("res://assets/Audio/Music.wav");
+		gameMusic = GD.Load<AudioStream>("res://assets/Audio/Main.wav");
 		Stream = gameMusic;
 		Play();
 	}

@@ -3,11 +3,11 @@ using System;
 
 public partial class gameoveraudioplayer : AudioStreamPlayer
 {
-	AudioStream gameOverSFX;
+	AudioStream gameOverMusic;
 	public override void _Ready()
 	{
-		gameOverSFX = GD.Load<AudioStream>("res://assets/Audio/GameOver.wav");
-		Stream = gameOverSFX;
+		gameOverMusic = GD.Load<AudioStream>("res://assets/Audio/GameOver.wav");
+		Stream = gameOverMusic;
 		Play();
 	}
 

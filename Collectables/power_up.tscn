@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuflb8srrbsxf"]
 
 [ext_resource type="Script" path="res://Collectables/power_up.cs" id="1_3u7us"]
-[ext_resource type="Texture2D" uid="uid://clhqjgpf18qxd" path="res://assets/Art/v1.1 dungeon crawler 16X16 pixel pack/props_itens/bomb_anim_f9.png" id="1_6lrrx"]
+[ext_resource type="Texture2D" uid="uid://byho3g7r1nos3" path="res://assets/Art/Custom/power_up.png" id="2_vf65e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ja1a8"]
 
@@ -9,7 +9,7 @@
 script = ExtResource("1_3u7us")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_6lrrx")
+texture = ExtResource("2_vf65e")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 3

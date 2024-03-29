@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqd4eqagqhsx7"]
+[gd_scene load_steps=3 format=3 uid="uid://bqd4eqagqhsx7"]
 
 [ext_resource type="Script" path="res://UI/start_menu.cs" id="1_b16mf"]
+[ext_resource type="Script" path="res://UI/startaudioplayer.cs" id="2_fggh7"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -38,5 +39,8 @@ offset_top = 0.160004
 offset_right = 0.407959
 offset_bottom = -0.104034
 text = "Click to Start"
+
+[node name="StartAudio" type="AudioStreamPlayer" parent="."]
+script = ExtResource("2_fggh7")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
