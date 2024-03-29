@@ -10,6 +10,7 @@ public partial class livesdisplay : Label
 		Signalbus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
 		Signalbus.LifeLost += OnLifeLost;
 		Signalbus.LifeGain += OnLifeGain; 
+		Signalbus.LivesDepleted += OnLivesDepleted;
 
 		Text = "Lives: " + lives;
 	}
@@ -19,8 +20,9 @@ public partial class livesdisplay : Label
 		
 		if(lives >= 0)
 		{
-			Text = "Lives: " + lives;
 			lives--;
+			Text = "Lives: " + lives;
+			
 		}
 		
 	}
@@ -33,6 +35,12 @@ public partial class livesdisplay : Label
 			Text = "Lives: " + lives;
 		}
 		
+	}
+
+	public void OnLivesDepleted()
+	{
+		lives = 2;
+		Text = "Lives: " + lives;
 	}
 
 	//add an OnLifeGain signal when I implement that fuctionality
