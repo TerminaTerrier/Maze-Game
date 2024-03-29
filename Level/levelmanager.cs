@@ -7,7 +7,7 @@ using Godot.Collections;
 
 public partial class levelmanager : Node
 {
-	static int pelletCount;
+	int pelletCount;
 	[Export]
 	TileMap tilemap;
 	//using Godot's arrays here because C# arrrays and list were not compatible with the tilemap methods
