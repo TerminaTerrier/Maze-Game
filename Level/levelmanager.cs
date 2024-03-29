@@ -11,7 +11,8 @@ public partial class levelmanager : Node
 	[Export]
 	TileMap tilemap;
 	//using Godot's arrays here because C# arrrays and list were not compatible with the tilemap methods
-
+	Node2D specialInstance;
+	Node2D specialChild;
 	Array<Vector2I> pelletTiles;
 	Array<Vector2> pelletTilesV2 = new Array<Vector2> { };
 	Array<Vector2I> powerTiles;
@@ -34,6 +35,9 @@ public partial class levelmanager : Node
 
 		specialTile = new Vector2I(568, 311);
 
+		specialInstance =  (Node2D)special.Instantiate();
+		AddChild(specialInstance);
+		RemoveChild(specialInstance);
 		
 
 		ConvertArray();
@@ -42,6 +46,9 @@ public partial class levelmanager : Node
 
 		SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
 		SignalBus.ItemCollected += OnItemCollected;
+		SignalBus.LifeLost += OnLifeLost;
+		SignalBus.SpecialDelete += OnSpecialDelete;
+		
 	}
 
 	private void ConvertArray()
@@ -114,10 +121,14 @@ public partial class levelmanager : Node
 	{
 		if(pelletCount <= pelletBookmark - 70)
 		{
-			Node2D specialInstance = (Node2D)special.Instantiate();
+			specialInstance = (Node2D)special.Instantiate();
 			specialInstance.Position = specialTile;
 			CallDeferred("add_child", specialInstance);
 			specialInstance.AddToGroup("Collectables");
+			
+			GD.Print(specialInstance.IsInsideTree());
+			//GD.Print(GetChildCount());
+			//specialChild = GetChild<Node2D>(341);
 
 			pelletBookmark = pelletBookmark - 70;
 		}
@@ -139,5 +150,23 @@ public partial class levelmanager : Node
 	{
 		SignalBus.EmitSignal(signalbus.SignalName.RightWarp, body);
 	}
+	
 
+	public void OnSpecialDelete()
+	{
+		CallDeferred("remove_child", specialInstance);
+	}
+	public void OnLifeLost()
+	{
+	     GD.Print(specialInstance.IsInsideTree());
+		if(specialInstance.IsInsideTree() == true)
+		{
+			RemoveChild(specialInstance);
+		}
+		else
+		{
+			return;
+		}
+		
+	}
 }

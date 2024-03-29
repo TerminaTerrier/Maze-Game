@@ -21,5 +21,7 @@ public partial class signalbus : Node
 	public delegate void EnemyDefeatEventHandler();
 	[Signal]
 	public delegate void LevelClearEventHandler();
+	[Signal]
+	public delegate void SpecialDeleteEventHandler();
 
 }

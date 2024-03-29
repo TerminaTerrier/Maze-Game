@@ -16,7 +16,7 @@ public partial class special_collectable : Node2D
 	public override void _Ready()
 	{
 		SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
-		SignalBus.LifeLost += OnLifeLost;
+		
 		timer.Start(15f);
 	  	specialTypeNum = rng.RandiRange(1, 3);
 		//use switch to select texture
@@ -34,10 +34,8 @@ public partial class special_collectable : Node2D
 		}
 	}
 
-	public void OnLifeLost()
-	{
-		QueueFree();
-	}
+	
+	
 	public void _on_area_2d_body_entered(Node2D body)
 	{
 		if (body.Name == "Player")
@@ -57,13 +55,13 @@ public partial class special_collectable : Node2D
 
 			}
 			//use switch to pick which kind of signal to send
-            QueueFree();
+          SignalBus.EmitSignal(signalbus.SignalName.SpecialDelete);
             
 		}
 	}
 	public void _on_timer_timeout()
 	{
-		QueueFree();
+		SignalBus.EmitSignal(signalbus.SignalName.SpecialDelete);
 	}
 
 	
