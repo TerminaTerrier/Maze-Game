@@ -25,6 +25,7 @@ public partial class enemy_purple : CharacterBody2D
 	public void OnLifeLost()
 	{
 		Vector2 spawn = new Vector2(567, 214);
+        stateMachine.TransitionTo("Chase");
         Position = spawn;
 	}
 	private void AnimationController()

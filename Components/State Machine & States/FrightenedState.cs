@@ -156,4 +156,5 @@ public partial class FrightenedState : Node, IState
         frightenedTimer.Stop();
     }
 
+
 }
