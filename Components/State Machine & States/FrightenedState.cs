@@ -46,7 +46,10 @@ public partial class FrightenedState : Node, IState
 
     public void Update(float delta)
     {
-       
+        if(enemyName == "Enemy_Green")
+        {
+            GD.Print(navAgent.IsTargetReachable());
+        }
         //GD.Print("I am Frightened");
     }
 
