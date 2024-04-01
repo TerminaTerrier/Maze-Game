@@ -62,15 +62,18 @@ public partial class IdleState : Node, IState
             {
                 move = new Vector2(0, -1);
                 enemy.MoveAndCollide(move * 0.5f);
+                dirEstimate = new Vector2(0, -1);;
             }
             else if (enemy.GlobalPosition.Y < 262f)
             {
                 move = new Vector2(0, 1);
                 enemy.MoveAndCollide(move * 0.5f);
+                dirEstimate = new Vector2(0, 1);;
             }
            
         }
 
+    
        // GD.Print(move);
     }
 

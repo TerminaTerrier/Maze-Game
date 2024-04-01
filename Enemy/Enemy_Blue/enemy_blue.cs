@@ -37,11 +37,25 @@ public partial class enemy_blue : CharacterBody2D
         {
             case Vector2(0,-1):
             //up
+            if(stateMachine.currentStateKey != "Idle")
+            {
             animatedSprite.Play(animatedSprite.Animation);
+            }
+            else if(stateMachine.currentStateKey == "Idle")
+            {
+                 animatedSprite.Play("MoveCycleLeft");
+            }
             break;
             case Vector2(0,1):
             //down
+            if(stateMachine.currentStateKey != "Idle")
+            {
             animatedSprite.Play(animatedSprite.Animation);
+            }
+            else if(stateMachine.currentStateKey == "Idle")
+            {
+                 animatedSprite.Play("MoveCycleLeft");
+            }
             break;
             case Vector2(-1,0):
             //left
