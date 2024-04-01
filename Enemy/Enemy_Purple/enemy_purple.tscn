@@ -1,14 +1,64 @@
-[gd_scene load_steps=25 format=3 uid="uid://dfqle63ujcwfh"]
+[gd_scene load_steps=39 format=3 uid="uid://dfqle63ujcwfh"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy_Purple/enemy_purple.cs" id="1_wcc7u"]
 [ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="2_dtv1c"]
 [ext_resource type="Texture2D" uid="uid://b6esj5odksqlu" path="res://assets/Art/2 - Bumpy the Robot/Running (16 x 16).png" id="2_l442x"]
 [ext_resource type="Texture2D" uid="uid://bvl3rg4a5771w" path="res://assets/Art/2 - Bumpy the Robot/RunningAlternatePurple (16 x 16).png" id="2_ote51"]
+[ext_resource type="Texture2D" uid="uid://cc012rpx5pt7n" path="res://assets/Art/2 - Bumpy the Robot/RunningAlternatePurpleFrightened (16 x 16).png" id="2_x7hy1"]
+[ext_resource type="Texture2D" uid="uid://cop6tsh1r5h34" path="res://assets/Art/2 - Bumpy the Robot/RunningPurpleFrightened (16 x 16).png" id="3_bl6y3"]
 [ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="3_rno5t"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="4_hapst"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ScatterState.cs" id="5_8sbmo"]
 [ext_resource type="Script" path="res://Components/State Machine & States/FrightenedState.cs" id="6_i864k"]
 [ext_resource type="Script" path="res://Components/State Machine & States/RetreatState.cs" id="7_nnjhg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxxmc"]
+atlas = ExtResource("2_x7hy1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0krt"]
+atlas = ExtResource("2_x7hy1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2rl6"]
+atlas = ExtResource("2_x7hy1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wh33y"]
+atlas = ExtResource("2_x7hy1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq7ab"]
+atlas = ExtResource("2_x7hy1")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eulh3"]
+atlas = ExtResource("2_x7hy1")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmui7"]
+atlas = ExtResource("3_bl6y3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgy1p"]
+atlas = ExtResource("3_bl6y3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvgoe"]
+atlas = ExtResource("3_bl6y3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg1f3"]
+atlas = ExtResource("3_bl6y3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha1dn"]
+atlas = ExtResource("3_bl6y3")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f364r"]
+atlas = ExtResource("3_bl6y3")
+region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_guhao"]
 atlas = ExtResource("2_ote51")
@@ -60,6 +110,52 @@ region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ajug5"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxxmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0krt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2rl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wh33y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq7ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eulh3")
+}],
+"loop": true,
+"name": &"FrightenedMoveCycleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmui7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgy1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvgoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cg1f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha1dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f364r")
+}],
+"loop": true,
+"name": &"FrightenedMoveCycleRight",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_guhao")
@@ -124,7 +220,7 @@ animatedSprite = NodePath("AnimatedSprite2D")
 position = Vector2(-1, -1)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_ajug5")
-animation = &"MoveCycleLeft"
+animation = &"FrightenedMoveCycleLeft"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_43ucv")

@@ -44,11 +44,25 @@ public partial class enemy_purple : CharacterBody2D
             break;
             case Vector2(-1,0):
             //left
-            animatedSprite.Play("MoveCycleLeft");
+            if(stateMachine.currentStateKey != "Frightened")
+            {
+               animatedSprite.Play("MoveCycleLeft");
+            }
+            else if (stateMachine.currentStateKey == "Frightened")
+            {
+               animatedSprite.Play("FrightenedMoveCycleLeft"); 
+            }
             break;
             case Vector2(1,0):
             //right
-            animatedSprite.Play("MoveCycleRight");
+            if(stateMachine.currentStateKey != "Frightened")
+            {
+               animatedSprite.Play("MoveCycleRight");
+            }
+            else if (stateMachine.currentStateKey == "Frightened")
+            {
+               animatedSprite.Play("FrightenedMoveCycleRight"); 
+            }
             break;
 
         }

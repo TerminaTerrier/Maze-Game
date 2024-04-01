@@ -45,11 +45,25 @@ public partial class enemy_blue : CharacterBody2D
             break;
             case Vector2(-1,0):
             //left
-            animatedSprite.Play("MoveCycleLeft");
+            if(stateMachine.currentStateKey != "Chase")
+            {
+               animatedSprite.Play("MoveCycleLeft");
+            }
+            else if (stateMachine.currentStateKey == "Chase")
+            {
+               animatedSprite.Play("ChaseMoveCycleLeft"); 
+            }
             break;
             case Vector2(1,0):
             //right
-            animatedSprite.Play("MoveCycleRight");
+            if(stateMachine.currentStateKey != "Chase")
+            {
+               animatedSprite.Play("MoveCycleRight");
+            }
+            else if (stateMachine.currentStateKey == "Chase")
+            {
+               animatedSprite.Play("ChaseMoveCycleRight"); 
+            }
             break;
 
         }

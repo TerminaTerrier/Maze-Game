@@ -1,14 +1,64 @@
-[gd_scene load_steps=25 format=3 uid="uid://cvybshk5bhrsc"]
+[gd_scene load_steps=39 format=3 uid="uid://cvybshk5bhrsc"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy_Red/enemy_red.cs" id="1_2lulb"]
 [ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="2_5kxce"]
+[ext_resource type="Texture2D" uid="uid://mh6uf82ecvmg" path="res://assets/Art/11 - Spikey Bub/RunningAlternateRedFrightened (16 x 16).png" id="2_g8j1a"]
 [ext_resource type="Texture2D" uid="uid://kl006b0xick0" path="res://assets/Art/11 - Spikey Bub/Running (16 x 16).png" id="2_wtuiv"]
 [ext_resource type="Texture2D" uid="uid://caxay7atdxlig" path="res://assets/Art/11 - Spikey Bub/RunningAlternateRed (16 x 16).png" id="3_586cj"]
 [ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="3_dtxxt"]
+[ext_resource type="Texture2D" uid="uid://bv3hnh7consgx" path="res://assets/Art/11 - Spikey Bub/RunningRedFrightened (16 x 16).png" id="3_xh5en"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="4_ohrml"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ScatterState.cs" id="5_gu702"]
 [ext_resource type="Script" path="res://Components/State Machine & States/FrightenedState.cs" id="6_c5i1n"]
 [ext_resource type="Script" path="res://Components/State Machine & States/RetreatState.cs" id="7_17cv1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm745"]
+atlas = ExtResource("2_g8j1a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3yyj"]
+atlas = ExtResource("2_g8j1a")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jkgn"]
+atlas = ExtResource("2_g8j1a")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5x72"]
+atlas = ExtResource("2_g8j1a")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oogcr"]
+atlas = ExtResource("2_g8j1a")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_waia3"]
+atlas = ExtResource("2_g8j1a")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g0mf"]
+atlas = ExtResource("3_xh5en")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rets4"]
+atlas = ExtResource("3_xh5en")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdotu"]
+atlas = ExtResource("3_xh5en")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjxwa"]
+atlas = ExtResource("3_xh5en")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yuc1"]
+atlas = ExtResource("3_xh5en")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbi3i"]
+atlas = ExtResource("3_xh5en")
+region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xwk10"]
 atlas = ExtResource("2_wtuiv")
@@ -60,6 +110,52 @@ region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_071t3"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tm745")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3yyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jkgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5x72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oogcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_waia3")
+}],
+"loop": true,
+"name": &"FrightenedMoveCycleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g0mf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rets4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdotu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjxwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yuc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbi3i")
+}],
+"loop": true,
+"name": &"FrightenedMoveCycleRight",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xwk10")
@@ -124,7 +220,7 @@ animatedSprite = NodePath("AnimatedSprite2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.125, 1.125)
 sprite_frames = SubResource("SpriteFrames_071t3")
-animation = &"MoveCycleLeft"
+animation = &"FrightenedMoveCycleLeft"
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

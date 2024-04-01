@@ -1,12 +1,62 @@
-[gd_scene load_steps=23 format=3 uid="uid://bgtx72ka6a8wp"]
+[gd_scene load_steps=37 format=3 uid="uid://bgtx72ka6a8wp"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy_Blue/enemy_blue.cs" id="1_rvgv2"]
 [ext_resource type="PackedScene" uid="uid://c7tsfo6j0p7jx" path="res://Components/State Machine & States/state_machine.tscn" id="2_i4f52"]
+[ext_resource type="Texture2D" uid="uid://bcgnowhcekb5c" path="res://assets/Art/10 - Bub/RunningBlueFrightened(16 x 16) .png" id="2_q7001"]
 [ext_resource type="Texture2D" uid="uid://c2ueto2s1mmcp" path="res://assets/Art/10 - Bub/Running (16 x 16).png" id="2_v4r28"]
 [ext_resource type="Script" path="res://Components/State Machine & States/ChaseState.cs" id="3_aqx3g"]
 [ext_resource type="Texture2D" uid="uid://cwg8ct8qb0sab" path="res://assets/Art/10 - Bub/RunningAlternateBlue (16 x 16).png" id="3_la0mr"]
+[ext_resource type="Texture2D" uid="uid://cogs33t3qv21q" path="res://assets/Art/10 - Bub/RunningAlternateBlueFrightened (16 x 16).png" id="3_teief"]
 [ext_resource type="Script" path="res://Components/State Machine & States/IdleState.cs" id="6_na4ke"]
 [ext_resource type="Script" path="res://Components/State Machine & States/RetreatState.cs" id="7_t7xkx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccg6g"]
+atlas = ExtResource("2_q7001")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbosg"]
+atlas = ExtResource("2_q7001")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65fwj"]
+atlas = ExtResource("2_q7001")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paux0"]
+atlas = ExtResource("2_q7001")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uflx7"]
+atlas = ExtResource("2_q7001")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uschs"]
+atlas = ExtResource("2_q7001")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ffju"]
+atlas = ExtResource("3_teief")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh28a"]
+atlas = ExtResource("3_teief")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t12h5"]
+atlas = ExtResource("3_teief")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwd8u"]
+atlas = ExtResource("3_teief")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4b5m"]
+atlas = ExtResource("3_teief")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7awlh"]
+atlas = ExtResource("3_teief")
+region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vt5xd"]
 atlas = ExtResource("2_v4r28")
@@ -58,6 +108,52 @@ region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ne0lm"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccg6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbosg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65fwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paux0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uflx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uschs")
+}],
+"loop": true,
+"name": &"ChaseMoveCycleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ffju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vh28a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t12h5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwd8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4b5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7awlh")
+}],
+"loop": true,
+"name": &"ChaseMoveCycleRight",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vt5xd")
@@ -122,9 +218,7 @@ animatedSprite = NodePath("AnimatedSprite2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.1875, 1.09375)
 sprite_frames = SubResource("SpriteFrames_ne0lm")
-animation = &"MoveCycleRight"
-frame = 3
-frame_progress = 0.778792
+animation = &"ChaseMoveCycleLeft"
 speed_scale = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
