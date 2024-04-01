@@ -25,7 +25,7 @@ public partial class health : Node2D
         Score_Manager = GetNode<score_manager>("/root/Sceneloader/Main/Score_Manager");
         Score_Manager.ScoreChange += OnScoreChange; 
 
-        scoreBase = 1000;
+        scoreBase = 2000;
     }
 
 

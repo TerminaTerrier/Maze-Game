@@ -29,7 +29,7 @@ public partial class livesdisplay : Label
 
 	public void OnLifeGain()
 	{
-		if(lives <= 5)
+		if(lives <= 4)
 		{
 			lives++;
 			Text = "Lives: " + lives;

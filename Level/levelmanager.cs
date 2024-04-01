@@ -161,7 +161,7 @@ public partial class levelmanager : Node
 	     GD.Print(specialInstance.IsInsideTree());
 		if(specialInstance.IsInsideTree() == true)
 		{
-			RemoveChild(specialInstance);
+			CallDeferred("remove_child", specialInstance);
 		}
 		else
 		{
