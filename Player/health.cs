@@ -8,7 +8,9 @@ public partial class health : Node2D
     public const int maxLives = 5;
     public static int lives;
     signalbus SignalBus;
+    StateMachine StateMachine;
     string enemyState;
+    string blueState;
 
     int scoreBase;
     static int scoreIncrement = 1;
@@ -18,6 +20,7 @@ public partial class health : Node2D
         lives = 2;
         SignalBus = GetNode<signalbus>("/root/Sceneloader/Main/SignalBus");
         SignalBus.StateChange += OnStateChange;
+        StateMachine = GetNode<StateMachine>("/root/Sceneloader/Main/Level/Enemy_Blue/StateMachine");
 
         Score_Manager = GetNode<score_manager>("/root/Sceneloader/Main/Score_Manager");
         Score_Manager.ScoreChange += OnScoreChange; 
@@ -49,7 +52,7 @@ public partial class health : Node2D
             
            
             
-            if(lives > 0 && lives <= maxLives && enemyName == "Enemy_Blue" && enemyState != "Retreat")
+            if(lives > 0 && lives <= maxLives && enemyName == "Enemy_Blue" && blueState != "Retreat")
             {
                 lives--;
                 SignalBus.EmitSignal(signalbus.SignalName.LifeLost);
@@ -64,6 +67,7 @@ public partial class health : Node2D
     public void OnStateChange(string state)
     {
         enemyState = state;
+        blueState = StateMachine.currentStateKey;
     }
 
     public void OnScoreChange(int score)

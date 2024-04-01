@@ -207,7 +207,7 @@ animations = [{
 radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sls7l"]
-radius = 8.0
+radius = 11.0
 
 [node name="Enemy_Purple" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite") groups=["Enemies"]]
 collision_layer = 16

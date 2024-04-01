@@ -30,7 +30,7 @@ public partial class RetreatState : Node, IState
         retreatTimer.Start(timerNum);
         
         enemySpeed = 100f;
-
+        //GD.Print(enemyName);
         enemy.SetCollisionMaskValue(1, false);
         area2D.SetCollisionMaskValue(1, false);
 
