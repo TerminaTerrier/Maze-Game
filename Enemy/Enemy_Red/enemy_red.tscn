@@ -12,30 +12,6 @@
 [ext_resource type="Script" path="res://Components/State Machine & States/FrightenedState.cs" id="6_c5i1n"]
 [ext_resource type="Script" path="res://Components/State Machine & States/RetreatState.cs" id="7_17cv1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tm745"]
-atlas = ExtResource("2_g8j1a")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r3yyj"]
-atlas = ExtResource("2_g8j1a")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1jkgn"]
-atlas = ExtResource("2_g8j1a")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v5x72"]
-atlas = ExtResource("2_g8j1a")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oogcr"]
-atlas = ExtResource("2_g8j1a")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_waia3"]
-atlas = ExtResource("2_g8j1a")
-region = Rect2(80, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1g0mf"]
 atlas = ExtResource("3_xh5en")
 region = Rect2(0, 0, 16, 16)
@@ -58,6 +34,30 @@ region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hbi3i"]
 atlas = ExtResource("3_xh5en")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm745"]
+atlas = ExtResource("2_g8j1a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3yyj"]
+atlas = ExtResource("2_g8j1a")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jkgn"]
+atlas = ExtResource("2_g8j1a")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5x72"]
+atlas = ExtResource("2_g8j1a")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oogcr"]
+atlas = ExtResource("2_g8j1a")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_waia3"]
+atlas = ExtResource("2_g8j1a")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xwk10"]
@@ -112,29 +112,6 @@ region = Rect2(80, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tm745")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r3yyj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1jkgn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v5x72")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oogcr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_waia3")
-}],
-"loop": true,
-"name": &"FrightenedMoveCycleLeft",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_1g0mf")
 }, {
 "duration": 1.0,
@@ -151,6 +128,29 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hbi3i")
+}],
+"loop": true,
+"name": &"FrightenedMoveCycleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tm745")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3yyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jkgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5x72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oogcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_waia3")
 }],
 "loop": true,
 "name": &"FrightenedMoveCycleRight",
