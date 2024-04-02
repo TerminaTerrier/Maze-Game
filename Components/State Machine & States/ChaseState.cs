@@ -40,6 +40,9 @@ public partial class ChaseState : Node, IState
 
          targetNum = rng.RandiRange(1, 5);
 
+        GD.Print(enemySpeed);
+        GD.Print(speedFactor);
+
         SignalBus.ItemCollected += OnItemCollected;
          SignalBus.LevelClear += OnLevelClear;
         SignalBus.EmitSignal(signalbus.SignalName.StateChange, "Chase");
