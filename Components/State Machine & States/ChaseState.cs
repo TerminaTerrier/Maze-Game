@@ -19,6 +19,7 @@ public partial class ChaseState : Node, IState
     float timerNum;
     string enemyName;
     float enemySpeed;
+    static float speedFactor = 0;
     int targetNum;
     signalbus SignalBus;
 
@@ -40,6 +41,7 @@ public partial class ChaseState : Node, IState
          targetNum = rng.RandiRange(1, 5);
 
         SignalBus.ItemCollected += OnItemCollected;
+         SignalBus.LevelClear += OnLevelClear;
         SignalBus.EmitSignal(signalbus.SignalName.StateChange, "Chase");
 
         if(enemyName == "Enemy_Purple")
@@ -67,20 +69,20 @@ public partial class ChaseState : Node, IState
         {
             case "Enemy_Green":
                 navAgent.TargetPosition = playerdata.playerPosition;
-                enemySpeed = 50f;
+                enemySpeed = 50f + speedFactor;
                 break;
             case "Enemy_Red":
                 navAgent.TargetPosition = playerdata.playerPosition + new Vector2(1,1);
-                enemySpeed = 50f;
+                enemySpeed = 50 + speedFactor;
                 break;
             case "Enemy_Purple":
                 
                 navAgent.TargetPosition = RandomTarget();
-                enemySpeed = 50f;
+                enemySpeed = 40f + speedFactor;
                 break;
             case "Enemy_Blue":
                 navAgent.TargetPosition = playerdata.playerPosition;
-                enemySpeed = 75f;
+                enemySpeed = 75f + speedFactor;
                 break;
         }
     }
@@ -170,7 +172,10 @@ public partial class ChaseState : Node, IState
         }
        
     }
-
+     public void OnLevelClear()
+     {
+        speedFactor = speedFactor + 0.05f;
+     }
     public void Exit()
     {
         chaseTimer.Stop();

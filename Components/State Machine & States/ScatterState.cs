@@ -110,7 +110,7 @@ public partial class ScatterState : Node, IState
                 break;
             case "Enemy_Purple":
                 navAgent.TargetPosition = currentTarget;
-                enemySpeed = 50f;
+                enemySpeed = 40f;
                 break;
         }
     }
